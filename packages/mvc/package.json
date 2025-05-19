@@ -1,7 +1,7 @@
 {
 	"name": "@mvc-react/mvc",
 	"version": "1.0.0",
-	"description": "Toolkit for MVC definitions in Typescript",
+	"description": "Toolkit for defining MVC applications",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/mvc",
 	"author": {
 		"name": "Garikai Gumbo",

@@ -1,7 +1,7 @@
 {
 	"name": "@mvc-react/stateful",
 	"version": "1.0.0",
-	"description": "Lean toolkit for stateful and observable MVC applications in React",
+	"description": "Lean toolkit for stateful MVC applications in React",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/stateful",
 	"author": {
 		"name": "Garikai Gumbo",

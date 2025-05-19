@@ -1,9 +1,13 @@
-name: Unit Tests
+name: "mvc-react/stateful"
 
 on:
     push:
+        paths:
+            - "packages/stateful/**"
         branches: [main]
     pull_request:
+        paths:
+            - "packages/stateful/**"
         branches: [main]
 
 jobs:
