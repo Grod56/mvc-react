@@ -1,0 +1,43 @@
+{
+	"name": "@mvc-react/mvc",
+	"version": "1.0.0",
+	"description": "Toolkit for MVC definitions in Typescript",
+	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/mvc",
+	"author": {
+		"name": "Garikai Gumbo",
+		"email": "providenceuniversalstudios@gmail.com"
+	},
+	"license": "MIT",
+	"keywords": [
+		"mvc",
+		"model",
+		"view",
+		"controller"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Grod56/mvc-react.git",
+		"directory": "packages/mvc"
+	},
+	"type": "module",
+	"scripts": {
+		"clean": "del-cli ./dist",
+		"build": "npm run clean && rollup -c",
+		"prepack": "npm run build"
+	},
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/**/*"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts"
+		},
+		"./package.json": "./package.json"
+	},
+	"devDependencies": {
+		"rollup": "^4.41.0",
+		"rollup-plugin-delete": "^3.0.1",
+		"rollup-plugin-dts": "^6.2.1"
+	}
+}
