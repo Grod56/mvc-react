@@ -1,4 +1,4 @@
-name: "mvc-react/stateful"
+name: "mvc-react/stateful unit tests"
 
 on:
     push:
