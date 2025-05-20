@@ -24,7 +24,7 @@ Represents a `Model` that can be transformed into a stateful `InteractiveModel`.
 
 ### `ViewInteractionInterface`
 
-The interface contains a single function, `produceModelView`, which accepts a `ModelInteraction` and returns a new corresponding `ModelView`.
+The interface contains a single function, `produceModelView`, which accepts a `ModelInteraction` and returns a Promise for the new corresponding `ModelView`.
 
 Example:
 
@@ -39,12 +39,14 @@ const interface: ViewInteractionInterface<
 	   switch (interaction.type) {
 		   case "add": {
 			   const { x, y } = interaction.input!;
-			   return { display: x + y };
+			   return Promise.resolve({ display: x + y });
 		   }
 		   case "subtract": {
 			   const { x, y } = interaction.input!;
-			   return { display: x - y };
+			   return Promise.resolve({ display: x - y });
 		   }
+		   default:
+			   return Promise.reject("Unhandled interaction");
 	   }
    }
 }

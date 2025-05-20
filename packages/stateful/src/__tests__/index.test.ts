@@ -1,9 +1,4 @@
-import {
-	act,
-	renderHook,
-	RenderHookResult,
-	waitFor,
-} from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import {
 	useInitializedStatefulInteractiveModel,
 	useNewStatefulInteractiveModel,
@@ -12,40 +7,28 @@ import {
 import {
 	faultyTestStatifiableModel,
 	faultyViewInteractionInterface,
-	TestModelInteraction,
 	TestModelInteractionType,
-	TestModelView,
 	testModelView,
 	testStatifiableModel,
 	testViewInteractionInterface,
 } from "./data";
-import { InteractiveModel } from "@mvc-react/mvc";
 
 describe("useNewStatefulInteractiveModel", () => {
-	// Potential tidying re. generics needed
-	let renderedHook: RenderHookResult<
-		InteractiveModel<TestModelView, TestModelInteraction>,
-		unknown
-	>;
-	let model: InteractiveModel<TestModelView, TestModelInteraction>;
-
-	beforeEach(() => {
-		renderedHook = renderHook(() =>
+	it("returns expected model", () => {
+		const renderedHook = renderHook(() =>
 			useNewStatefulInteractiveModel(testViewInteractionInterface)
 		);
-		model = renderedHook.result.current;
-	});
-	afterEach(() => {
-		renderedHook.unmount();
-	});
-
-	it("returns expected model", () => {
+		const model = renderedHook.result.current;
 		expect(model).toEqual({
 			modelView: null,
 			interact: expect.any(Function),
 		});
 	});
 	it("returns identical model properties on rerender", () => {
+		const renderedHook = renderHook(() =>
+			useNewStatefulInteractiveModel(testViewInteractionInterface)
+		);
+		const model = renderedHook.result.current;
 		act(() => {
 			renderedHook.rerender();
 		});
@@ -54,60 +37,63 @@ describe("useNewStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
+		const renderedHook = renderHook(() =>
+			useNewStatefulInteractiveModel(testViewInteractionInterface)
+		);
+		const model = renderedHook.result.current;
 		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
-		const expectedModelView = testViewInteractionInterface.produceModelView(
-			{
+		const expectedModelView =
+			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
 				input: null,
-			}
-		);
-		const currentModelView = renderedHook.result.current.modelView;
-		expect(currentModelView).toEqual(expectedModelView);
+			});
+		waitFor(() => {
+			const currentModelView = renderedHook.result.current.modelView;
+			expect(currentModelView).toEqual(expectedModelView);
+		});
 	});
-	it("throws error when an interaction fails", () => {
-		renderedHook = renderHook(() =>
+	it("reports error when interaction fails", () => {
+		const consoleErrorSpy = jest.spyOn(console, "error");
+		consoleErrorSpy.mockImplementation();
+		const renderedHook = renderHook(() =>
 			useNewStatefulInteractiveModel(faultyViewInteractionInterface)
 		);
-		model = renderedHook.result.current;
-		expect(
-			waitFor(() =>
-				model.interact({
-					type: TestModelInteractionType.TEST,
-					input: null,
-				})
-			)
-		).rejects.toThrow(expect.any(String));
+		const model = renderedHook.result.current;
+		act(() => {
+			model.interact({
+				type: TestModelInteractionType.TEST,
+				input: null,
+			});
+		});
+		waitFor(() => {
+			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+		});
 	});
 });
 describe("useInitializedStatefulInteractiveModel", () => {
-	let renderedHook: RenderHookResult<
-		InteractiveModel<TestModelView, TestModelInteraction>,
-		unknown
-	>;
-	let model: InteractiveModel<TestModelView, TestModelInteraction>;
-
-	beforeEach(() => {
-		renderedHook = renderHook(() =>
+	it("returns expected model", () => {
+		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				testViewInteractionInterface,
 				testModelView
 			)
 		);
-		model = renderedHook.result.current;
-	});
-	afterEach(() => {
-		renderedHook.unmount();
-	});
-
-	it("returns expected model", () => {
+		const model = renderedHook.result.current;
 		expect(model).toEqual({
 			modelView: testModelView,
 			interact: expect.any(Function),
 		});
 	});
 	it("returns identical model properties on rerender", () => {
+		const renderedHook = renderHook(() =>
+			useInitializedStatefulInteractiveModel(
+				testViewInteractionInterface,
+				testModelView
+			)
+		);
+		const model = renderedHook.result.current;
 		act(() => {
 			renderedHook.rerender();
 		});
@@ -116,60 +102,63 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
+		const renderedHook = renderHook(() =>
+			useInitializedStatefulInteractiveModel(
+				testViewInteractionInterface,
+				testModelView
+			)
+		);
+		const model = renderedHook.result.current;
 		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
-		const expectedModelView = testViewInteractionInterface.produceModelView(
-			{
+		const expectedModelView =
+			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
 				input: null,
-			}
-		);
-		const currentModelView = renderedHook.result.current.modelView;
-		expect(currentModelView).toEqual(expectedModelView);
+			});
+		waitFor(() => {
+			const currentModelView = renderedHook.result.current.modelView;
+			expect(currentModelView).toEqual(expectedModelView);
+		});
 	});
-	it("throws error when an interaction fails", async () => {
-		renderedHook = renderHook(() =>
+	it("reports error when an interaction fails", () => {
+		const consoleErrorSpy = jest.spyOn(console, "error");
+		consoleErrorSpy.mockImplementation();
+		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				faultyViewInteractionInterface,
 				testModelView
 			)
 		);
-		model = renderedHook.result.current;
-		expect(
-			waitFor(() =>
-				model.interact({
-					type: TestModelInteractionType.TEST,
-					input: null,
-				})
-			)
-		).rejects.toThrow(expect.any(String));
+		const model = renderedHook.result.current;
+		act(() => {
+			model.interact({
+				type: TestModelInteractionType.TEST,
+				input: null,
+			});
+		});
+		waitFor(() => {
+			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+		});
 	});
 });
 describe("useTransformedStatefulInteractiveModel", () => {
-	let renderedHook: RenderHookResult<
-		InteractiveModel<TestModelView, TestModelInteraction>,
-		unknown
-	>;
-	let model: InteractiveModel<TestModelView, TestModelInteraction>;
-
-	beforeEach(() => {
-		renderedHook = renderHook(() =>
+	it("returns equivalent model", () => {
+		const renderedHook = renderHook(() =>
 			useTransformedStatefulInteractiveModel(testStatifiableModel)
 		);
-		model = renderedHook.result.current;
-	});
-	afterEach(() => {
-		renderedHook.unmount();
-	});
-
-	it("returns equivalent model", () => {
+		const model = renderedHook.result.current;
 		expect(model).toEqual({
 			modelView: testStatifiableModel.modelView,
 			interact: expect.any(Function),
 		});
 	});
 	it("returns identical model properties on rerender", () => {
+		const renderedHook = renderHook(() =>
+			useTransformedStatefulInteractiveModel(testStatifiableModel)
+		);
+		const model = renderedHook.result.current;
 		act(() => {
 			renderedHook.rerender();
 		});
@@ -178,29 +167,40 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
+		const renderedHook = renderHook(() =>
+			useTransformedStatefulInteractiveModel(testStatifiableModel)
+		);
+		const model = renderedHook.result.current;
 		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
 		const expectedModelView =
-			testStatifiableModel.viewInteractionInterface.produceModelView({
+			await testStatifiableModel.viewInteractionInterface.produceModelView(
+				{
+					type: TestModelInteractionType.TEST,
+					input: null,
+				}
+			);
+		waitFor(() => {
+			const currentModelView = renderedHook.result.current.modelView;
+			expect(currentModelView).toEqual(expectedModelView);
+		});
+	});
+	it("reports error when an interaction fails", () => {
+		const consoleErrorSpy = jest.spyOn(console, "error");
+		consoleErrorSpy.mockImplementation();
+		const renderedHook = renderHook(() =>
+			useTransformedStatefulInteractiveModel(faultyTestStatifiableModel)
+		);
+		const model = renderedHook.result.current;
+		act(() => {
+			model.interact({
 				type: TestModelInteractionType.TEST,
 				input: null,
 			});
-		const currentModelView = renderedHook.result.current.modelView;
-		expect(currentModelView).toEqual(expectedModelView);
-	});
-	it("throws error when an interaction fails", () => {
-		renderedHook = renderHook(() =>
-			useTransformedStatefulInteractiveModel(faultyTestStatifiableModel)
-		);
-		model = renderedHook.result.current;
-		expect(
-			waitFor(() =>
-				model.interact({
-					type: TestModelInteractionType.TEST,
-					input: null,
-				})
-			)
-		).rejects.toThrow(expect.any(String));
+		});
+		waitFor(() => {
+			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+		});
 	});
 });

@@ -26,9 +26,9 @@ export interface ViewInteractionInterface<
 > {
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
-	 *@returns A new model view
+	 *@returns A Promise for the produced model view
 	 */
-	produceModelView(interaction: I): V;
+	produceModelView(interaction: I): Promise<V>;
 }
 
 /**Constructs stateful {@link InteractiveModel} with observable {@link ModelView},
@@ -56,17 +56,14 @@ export function useInitializedStatefulInteractiveModel<
 	);
 	const memoizedInteract = useCallback(
 		(interaction: ModelInteraction<V>) => {
-			try {
-				const newModelView =
-					memoizedViewInteractionInterface.produceModelView(
-						interaction
-					);
-				setModelView(newModelView);
-			} catch (error) {
-				throw new Error("Interaction failed", {
-					cause: new Error(String(error)),
+			memoizedViewInteractionInterface
+				.produceModelView(interaction)
+				.then((newModelView: U) => {
+					setModelView(newModelView);
+				})
+				.catch((error: Error) => {
+					console.error("Interaction failed: %s", String(error));
 				});
-			}
 		},
 		[memoizedViewInteractionInterface]
 	);
