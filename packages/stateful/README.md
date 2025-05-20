@@ -1,6 +1,6 @@
 # mvc-react/stateful
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml)[![cov](https://Grod56.github.io/mvc-react/badges/coverage.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-unit-tests.yml)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml)[![coverage](https://Grod56.github.io/mvc-react/badges/coverage.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-unit-tests.yml)
 
 Lean toolkit for 'stateful' MVC use cases in React. Uses definitions specified in `@mvc-react/mvc` (see more [here](https://github.com/Grod56/mvc-react/tree/main/packages/mvc)).
 
