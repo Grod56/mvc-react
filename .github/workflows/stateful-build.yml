@@ -3,11 +3,11 @@ name: "build"
 on:
     push:
         paths:
-            - "packages/stateful/src/**"
+            - "packages/stateful/**"
         branches: [main]
     pull_request:
         paths:
-            - "packages/stateful/src/**"
+            - "packages/stateful/**"
         branches: [main]
 
 jobs:

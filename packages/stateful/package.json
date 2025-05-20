@@ -39,6 +39,7 @@
 	"scripts": {
 		"clean": "del-cli ./dist",
 		"test": "jest",
+		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'",
 		"build": "npm run clean && rollup -c",
 		"prepack": "npm run build",
 		"prepublish": "npm test"
