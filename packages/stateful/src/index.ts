@@ -78,7 +78,6 @@ export function useNewStatefulInteractiveModel<
  * with observable {@link ModelView}.
  * @param model - Model to be transformed
  * @returns New readonly {@link InteractiveModel} initialized with `model`'s {@link ModelView}
- *
  */
 export function useTransformedStatefulInteractiveModel<
 	T extends InteractiveModel<U, ModelInteraction<V>>,

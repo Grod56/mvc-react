@@ -55,11 +55,12 @@ describe("useNewStatefulInteractiveModel", () => {
 	});
 	it("changes model view to expected value after interaction", async () => {
 		await act(() =>
-			model.interact({ type: TestModelInteractionType.TEST })
+			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
+				input: null,
 			});
 		const currentModelView = renderedHook.result.current.modelView;
 		expect(currentModelView).toEqual(expectedModelView);
@@ -71,7 +72,10 @@ describe("useNewStatefulInteractiveModel", () => {
 		model = renderedHook.result.current;
 		expect(
 			waitFor(() =>
-				model.interact({ type: TestModelInteractionType.TEST })
+				model.interact({
+					type: TestModelInteractionType.TEST,
+					input: null,
+				})
 			)
 		).rejects.toThrow(expect.any(String));
 	});
@@ -112,11 +116,12 @@ describe("useInitializedStatefulInteractiveModel", () => {
 	});
 	it("changes model view to expected value after interaction", async () => {
 		await act(() =>
-			model.interact({ type: TestModelInteractionType.TEST })
+			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
+				input: null,
 			});
 		const currentModelView = renderedHook.result.current.modelView;
 		expect(currentModelView).toEqual(expectedModelView);
@@ -131,7 +136,10 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		model = renderedHook.result.current;
 		expect(
 			waitFor(() =>
-				model.interact({ type: TestModelInteractionType.TEST })
+				model.interact({
+					type: TestModelInteractionType.TEST,
+					input: null,
+				})
 			)
 		).rejects.toThrow(expect.any(String));
 	});
@@ -169,12 +177,13 @@ describe("useTransformedStatefulInteractiveModel", () => {
 	});
 	it("changes model view to expected value after interaction", async () => {
 		await act(() =>
-			model.interact({ type: TestModelInteractionType.TEST })
+			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
 		const expectedModelView =
 			await testStatifiableModel.viewInteractionInterface.produceModelView(
 				{
 					type: TestModelInteractionType.TEST,
+					input: null,
 				}
 			);
 		const currentModelView = renderedHook.result.current.modelView;
@@ -187,7 +196,10 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		model = renderedHook.result.current;
 		expect(
 			waitFor(() =>
-				model.interact({ type: TestModelInteractionType.TEST })
+				model.interact({
+					type: TestModelInteractionType.TEST,
+					input: null,
+				})
 			)
 		).rejects.toThrow(expect.any(String));
 	});
