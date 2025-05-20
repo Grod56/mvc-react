@@ -6,7 +6,9 @@ Lean toolkit for 'stateful' MVC use cases in React. Uses definitions specified i
 
 ## Installation
 
-> `npm install --save @mvc-react/stateful`
+```console
+npm install --save @mvc-react/stateful
+```
 
 ## Summary
 
@@ -34,17 +36,17 @@ const interface: ViewInteractionInterface<
     CalculatorInteraction
 > = {
     async produceModelView(interaction: CalculatorInteraction) {
-		switch (interaction.type) {
-			case "add": {
-				const { x, y } = interaction.input!;
-				return { display: x + y };
-			}
-			case "subtract": {
-				const { x, y } = interaction.input!;
-				return { display: x - y };
-			}
-		}
-	}
+	   switch (interaction.type) {
+		   case "add": {
+			   const { x, y } = interaction.input!;
+			   return { display: x + y };
+		   }
+		   case "subtract": {
+			   const { x, y } = interaction.input!;
+			   return { display: x - y };
+		   }
+	   }
+   }
 }
 ```
 

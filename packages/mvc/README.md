@@ -4,7 +4,9 @@ Toolkit for defining MVC applications in Typescript.
 
 ## Installation
 
-> `npm install --save-dev @mvc-react/mvc`
+```console
+npm install --save-dev @mvc-react/mvc
+```
 
 ## Documentation
 
@@ -53,7 +55,7 @@ import { InteractiveModel, Model, ModelInteraction } from @mvc-react/mvc;
 
 // Our custom ModelView definition
 interface CalculatorView {
-    display: number;
+   display: number;
 }
 
 // The interactions our model will handle
@@ -65,21 +67,21 @@ type CalculatorModel = InteractiveModel<CalculatorView, CalculatorInteraction>;
 // Implemented
 const calculator: CalculatorModel = {
     modelView: {
-        display: 0,
+       display: 0,
     },
     async interact(interaction: CalculatorInteraction) {
-		switch (interaction.type) {
-			case "add": {
-				const { x, y } = interaction.input!;
-				this.modelView = { display: x + y };
-				break;
-			}
-			case "subtract": {
-				const { x, y } = interaction.input!;
-				this.modelView = { display: x - y };
-				break;
-			}
-		}
+	switch (interaction.type) {
+	   case "add": {
+		 const { x, y } = interaction.input!;
+		   this.modelView = { display: x + y };
+		   break;
+	   }
+	   case "subtract": {
+		 const { x, y } = interaction.input!;
+		   this.modelView = { display: x - y };
+		   break;
+		 }
+	   }
 	}
 }
 ```
