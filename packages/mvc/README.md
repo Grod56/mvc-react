@@ -59,10 +59,16 @@ interface CalculatorView {
 }
 
 // The interactions our model will handle
-type CalculatorInteraction = ModelInteraction<"add", {x: number, y: number}> | ModelInteraction<"subtract", {x: number, y: number}>
+type CalculatorInteraction = (
+   ModelInteraction<"add", {x: number, y: number}> |
+   ModelInteraction<"subtract", {x: number, y: number}>
+)
 
 // Our custom Model definition
-type CalculatorModel = InteractiveModel<CalculatorView, CalculatorInteraction>;
+type CalculatorModel = InteractiveModel<
+   CalculatorView,
+   CalculatorInteraction
+>;
 
 // Implemented
 const calculator: CalculatorModel = {
