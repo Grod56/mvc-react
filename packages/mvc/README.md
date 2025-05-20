@@ -100,4 +100,4 @@ console.log(calculator.modelView); // { display: 5 }
 
 ## See related
 
--   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful)
+-   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)

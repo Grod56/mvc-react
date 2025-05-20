@@ -4,5 +4,5 @@ Lean framework for MVC applications in Typescript and React.
 
 ## See more
 
--   [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc)
--   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful)
+-   [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
+-   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)
