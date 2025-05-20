@@ -44,7 +44,7 @@ The `ReadonlyModel` type represents a `Model` with an immutable `modelView`.
 
 ### `InteractiveModel`
 
-The `InteractiveModel` type represents a `Model` whose `modelView` changes according to specified model 'interactions'. It consists of an additional asynchronous `interact` function, which takes a single `ModelInteraction` object as an argument and mutates the model's `modelView` accordingly.
+The `InteractiveModel` type represents a `Model` whose `modelView` changes according to specified model 'interactions'. It consists of an additional `interact` function, which takes a single `ModelInteraction` object as an argument and mutates the model's `modelView` accordingly.
 
 A `ModelInteraction` object has two properties: `type`—which specifies the type of interaction to be executed; and an optional `input` object which encapsulates the interaction's input data if there is any.
 
@@ -75,7 +75,7 @@ const calculator: CalculatorModel = {
     modelView: {
        display: 0,
     },
-    async interact(interaction: CalculatorInteraction) {
+    interact(interaction: CalculatorInteraction) {
 	switch (interaction.type) {
 	   case "add": {
 		 const { x, y } = interaction.input!;
@@ -94,8 +94,7 @@ const calculator: CalculatorModel = {
 
 ```ts
 // Result
-await calculator.interact({ type: "add", input: { x: 2, y: 3 } });
-
+calculator.interact({ type: "add", input: { x: 2, y: 3 } });
 console.log(calculator.modelView); // { display: 5 }
 ```
 

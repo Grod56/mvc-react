@@ -26,8 +26,8 @@ export interface ViewInteractionInterface<
 > {
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
-	 *@returns A Promise for the produced model view
+	 *@returns A new model view
 	 *@async
 	 */
-	produceModelView(interaction: I): Promise<V>;
+	produceModelView(interaction: I): V;
 }

@@ -24,9 +24,8 @@ export interface InteractiveModel<
 > extends Model<V> {
 	/**Initiates a model interaction.
 	 * @param interaction - Interaction to be executed.
-	 * @returns A Promise for the completion of the interaction
-	 * @async */
-	interact(interaction: I): Promise<void>;
+	 */
+	interact(interaction: I): void;
 }
 
 /**Encapsulates a singular model interaction/activity

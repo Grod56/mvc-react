@@ -24,7 +24,7 @@ Represents a `Model` that can be transformed into a stateful `InteractiveModel`.
 
 ### `ViewInteractionInterface`
 
-The interface contains a single asynchronous function, `produceModelView`, which accepts a `ModelInteraction` and returns a new corresponding `ModelView`.
+The interface contains a single function, `produceModelView`, which accepts a `ModelInteraction` and returns a new corresponding `ModelView`.
 
 Example:
 
@@ -35,7 +35,7 @@ const interface: ViewInteractionInterface<
     CalculatorModelView,
     CalculatorInteraction
 > = {
-    async produceModelView(interaction: CalculatorInteraction) {
+    produceModelView(interaction: CalculatorInteraction) {
 	   switch (interaction.type) {
 		   case "add": {
 			   const { x, y } = interaction.input!;

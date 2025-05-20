@@ -29,10 +29,10 @@ export function useInitializedStatefulInteractiveModel<
 		initialModelView
 	);
 	const memoizedInteract = useCallback(
-		async (interaction: ModelInteraction<V>) => {
+		(interaction: ModelInteraction<V>) => {
 			try {
 				const newModelView =
-					await memoizedViewInteractionInterface.produceModelView(
+					memoizedViewInteractionInterface.produceModelView(
 						interaction
 					);
 				setModelView(newModelView);

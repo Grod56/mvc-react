@@ -54,14 +54,15 @@ describe("useNewStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
-		await act(() =>
+		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
-		const expectedModelView =
-			await testViewInteractionInterface.produceModelView({
+		const expectedModelView = testViewInteractionInterface.produceModelView(
+			{
 				type: TestModelInteractionType.TEST,
 				input: null,
-			});
+			}
+		);
 		const currentModelView = renderedHook.result.current.modelView;
 		expect(currentModelView).toEqual(expectedModelView);
 	});
@@ -115,14 +116,15 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
-		await act(() =>
+		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
-		const expectedModelView =
-			await testViewInteractionInterface.produceModelView({
+		const expectedModelView = testViewInteractionInterface.produceModelView(
+			{
 				type: TestModelInteractionType.TEST,
 				input: null,
-			});
+			}
+		);
 		const currentModelView = renderedHook.result.current.modelView;
 		expect(currentModelView).toEqual(expectedModelView);
 	});
@@ -176,16 +178,14 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		expect(modelOnRerender.interact).toBe(model.interact);
 	});
 	it("changes model view to expected value after interaction", async () => {
-		await act(() =>
+		act(() =>
 			model.interact({ type: TestModelInteractionType.TEST, input: null })
 		);
 		const expectedModelView =
-			await testStatifiableModel.viewInteractionInterface.produceModelView(
-				{
-					type: TestModelInteractionType.TEST,
-					input: null,
-				}
-			);
+			testStatifiableModel.viewInteractionInterface.produceModelView({
+				type: TestModelInteractionType.TEST,
+				input: null,
+			});
 		const currentModelView = renderedHook.result.current.modelView;
 		expect(currentModelView).toEqual(expectedModelView);
 	});

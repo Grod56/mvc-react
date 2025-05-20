@@ -27,13 +27,13 @@ export const testModelView: TestModelView = {
 };
 
 export const testViewInteractionInterface: TestViewInteractionInterface = {
-	produceModelView: jest.fn(async (interaction: TestModelInteraction) => ({
+	produceModelView: jest.fn((interaction: TestModelInteraction) => ({
 		displayValue: `${interaction.type} has just been executed!`,
 	})),
 };
 
 export const faultyViewInteractionInterface: TestViewInteractionInterface = {
-	produceModelView: jest.fn(async (_: TestModelInteraction) => {
+	produceModelView: jest.fn((_: TestModelInteraction) => {
 		throw new Error("Rejected!");
 	}),
 };
