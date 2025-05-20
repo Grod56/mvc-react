@@ -14,7 +14,7 @@ The `Model` type encapsulates the essence of any item that can be viewed or inte
 
 Example:
 
-```
+```ts
 import { Model } from @mvc-react/mvc;
 
 // Our custom ModelView
@@ -48,26 +48,20 @@ A `ModelInteraction` object has two properties: `type`—which specifies the typ
 
 Example:
 
-```
+```ts
 import { InteractiveModel, Model, ModelInteraction } from @mvc-react/mvc;
 
 // Our custom ModelView definition
 interface CalculatorView {
     display: number;
 }
-```
 
-```
 // The interactions our model will handle
 type CalculatorInteraction = ModelInteraction<"add", {x: number, y: number}> | ModelInteraction<"subtract", {x: number, y: number}>
-```
 
-```
 // Our custom Model definition
 type CalculatorModel = InteractiveModel<CalculatorView, CalculatorInteraction>;
-```
 
-```
 // Implemented
 const calculator: CalculatorModel = {
     modelView: {
@@ -90,11 +84,11 @@ const calculator: CalculatorModel = {
 }
 ```
 
-```
+```ts
 // Result
-await calculator.interact({type: "add", input: {x: 2, y: 3}})
+await calculator.interact({ type: "add", input: { x: 2, y: 3 } });
 
-console.log(calculator.modelView) // { display: 5 }
+console.log(calculator.modelView); // { display: 5 }
 ```
 
 ## See related
