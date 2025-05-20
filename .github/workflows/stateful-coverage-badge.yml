@@ -1,4 +1,4 @@
-name: "coverage"
+name: "@mvc-react/stateful coverage badge"
 
 on:
     push:

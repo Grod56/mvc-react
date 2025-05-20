@@ -1,13 +1,14 @@
-name: "build"
+name: "@mvc-react/stateful build"
 
 on:
     push:
         paths:
             - "packages/stateful/**"
+        branches: [main]
     pull_request:
         paths:
             - "packages/stateful/**"
-    workflow_dispatch:
+        branches: [main]
 
 jobs:
     build:

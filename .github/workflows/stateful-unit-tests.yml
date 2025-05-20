@@ -1,13 +1,14 @@
-name: "unit tests"
+name: "@mvc-react/stateful unit tests"
 
 on:
     push:
         paths:
             - "packages/stateful/src/**"
+        branches: [main]
     pull_request:
         paths:
             - "packages/stateful/src/**"
-    workflow_dispatch:
+        branches: [main]
 
 jobs:
     test:
