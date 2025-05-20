@@ -29,7 +29,7 @@ The interface contains a single asynchronous function, `produceModelView`, which
 Example:
 
 ```ts
-import { Model } from @mvc-react/mvc;
+import { ViewInteractionInterface } from @mvc-react/stateful;
 
 const interface: ViewInteractionInterface<
     CalculatorModelView,
