@@ -58,7 +58,7 @@ export function useInitializedStatefulInteractiveModel<
  * which is based on the provided {@link ViewInteractionInterface}.
  * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
  * @returns New readonly {@link InteractiveModel} with uninitialized (`null`) {@link ModelView}
- *  */
+ */
 export function useNewStatefulInteractiveModel<
 	T extends InteractiveModel<U, ModelInteraction<V>>,
 	U extends ModelView = ModelView,
