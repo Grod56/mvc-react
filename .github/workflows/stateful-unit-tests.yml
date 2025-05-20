@@ -1,4 +1,4 @@
-name: "mvc-react/stateful unit tests"
+name: "'mvc-react/stateful' unit tests"
 
 on:
     push:
@@ -20,4 +20,4 @@ jobs:
               with:
                   node-version: "22"
             - run: npm ci
-            - run: npm run test
+            - run: npm run test -w=packages/stateful
