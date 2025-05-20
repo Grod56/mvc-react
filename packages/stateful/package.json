@@ -44,7 +44,7 @@
 		"prepublish": "npm test"
 	},
 	"dependencies": {
-		"@mvc-react/mvc": "latest",
+		"@mvc-react/mvc": "^1.0.0",
 		"react": "^19.1.0"
 	},
 	"devDependencies": {
