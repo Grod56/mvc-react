@@ -1,17 +1,17 @@
-name: "build"
+name: "unit tests"
 
 on:
     push:
         paths:
-            - "packages/stateful/**"
+            - "packages/stateful/src/**"
     pull_request:
         paths:
-            - "packages/stateful/**"
+            - "packages/stateful/src/**"
     workflow_dispatch:
 
 jobs:
-    build:
-        name: Build
+    test:
+        name: Unit Tests
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -22,5 +22,5 @@ jobs:
             - name: Clean Install
               run: npm ci -w=packages/stateful
 
-            - name: Run Build
-              run: npm run build -w=packages/stateful
+            - name: Run Tests
+              run: npm run test -w=packages/stateful
