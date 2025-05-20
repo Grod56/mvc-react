@@ -2,11 +2,11 @@
  * (e.g. component, repository, database table record, etc.). */
 export interface Model<V extends ModelView> {
 	/**The model's {@link ModelView} */
-	modelView: Readonly<V>;
+	modelView: Readonly<V> | null;
 }
 
 /**Encapsulates what a client sees/the current 'state' of a {@link Model}. */
-export type ModelView = object | null;
+export type ModelView = object;
 
 //------------------------------------------------------------
 
@@ -31,9 +31,9 @@ export interface InteractiveModel<
 
 /**Encapsulates a singular model interaction/activity
  * which accordingly mutates the {@link Model}'s {@link ModelView}. */
-export type ModelInteraction<T, I extends object = object> = {
+export type ModelInteraction<T, I extends object | null = object | null> = {
 	/**The kind of interaction. */
 	readonly type: T;
 	/**The interaction's corresponding input data, if any. */
-	readonly input?: I;
+	readonly input: I;
 };

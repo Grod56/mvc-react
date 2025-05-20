@@ -5,6 +5,10 @@
 		"type": "git",
 		"url": "https://github.com/Grod56/mvc-react.git"
 	},
+	"workspaces": [
+		"packages/mvc",
+		"packages/stateful"
+	],
 	"devDependencies": {
 		"@eslint/js": "^9.27.0",
 		"@testing-library/dom": "^10.4.0",

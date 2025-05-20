@@ -20,12 +20,14 @@ export function useInitializedStatefulInteractiveModel<
 		U,
 		ModelInteraction<V>
 	> = ViewInteractionInterface<U, ModelInteraction<V>>
->(viewInteractionInterface: W, initialModelView: U): Readonly<T> {
+>(viewInteractionInterface: W, initialModelView: U | null): Readonly<T> {
 	// The most valid way to "memoize" the input that I could come up with
 	const [memoizedViewInteractionInterface] = useState<W>(
 		viewInteractionInterface
 	);
-	const [memoizedModelView, setModelView] = useState<U>(initialModelView);
+	const [memoizedModelView, setModelView] = useState<U | null>(
+		initialModelView
+	);
 	const memoizedInteract = useCallback(
 		async (interaction: ModelInteraction<V>) => {
 			try {
