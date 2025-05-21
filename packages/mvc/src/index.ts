@@ -11,7 +11,9 @@ export type ModelView = object;
 //------------------------------------------------------------
 
 /**Encapsulates {@link Model} with unchanging {@link ModelView}. */
-export type ReadonlyModel<V extends ModelView> = Readonly<Model<V>>;
+export interface ReadonlyModel<V extends ModelView> extends Model<V> {
+	readonly modelView: Readonly<V>;
+}
 
 //------------------------------------------------------------
 
@@ -36,3 +38,13 @@ export type ModelInteraction<T, I extends object | null = object | null> = {
 	/**The interaction's corresponding input data, if any. */
 	readonly input: I;
 };
+
+/**Convenience function for constructing an new {@link ReadonlyModel}
+ * @param modelView - Model view of model to be constructed
+ * @returns New readonly model initialized with `modelView`
+ */
+export function newReadonlyModel<V extends object>(
+	modelView: V
+): ReadonlyModel<V> {
+	return { modelView };
+}

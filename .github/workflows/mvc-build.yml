@@ -1,0 +1,27 @@
+name: "build"
+
+on:
+    push:
+        paths:
+            - "packages/mvc/**"
+        branches: [main]
+    pull_request:
+        paths:
+            - "packages/mvc/**"
+        branches: [main]
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: "22"
+
+            - name: Clean Install
+              run: npm ci -w=packages/mvc
+
+            - name: Run Build
+              run: npm run build -w=packages/mvc

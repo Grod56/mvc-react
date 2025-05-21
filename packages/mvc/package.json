@@ -1,6 +1,6 @@
 {
 	"name": "@mvc-react/mvc",
-	"version": "2.0.1",
+	"version": "2.1.1",
 	"description": "Toolkit for defining MVC applications",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/mvc",
 	"author": {
@@ -20,23 +20,41 @@
 		"directory": "packages/mvc"
 	},
 	"type": "module",
-	"scripts": {
-		"clean": "del-cli ./dist",
-		"build": "npm run clean && rollup -c",
-		"prepack": "npm run build"
-	},
+	"module": "./dist/index.mjs",
+	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist/**/*"
 	],
 	"exports": {
 		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
 			"types": "./dist/index.d.ts"
 		}
 	},
+	"scripts": {
+		"clean": "del-cli ./dist",
+		"build": "npm run clean && rollup -c",
+		"prepack": "npm run build",
+		"prepublishOnly": "npm test",
+		"test": "jest",
+		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'"
+	},
 	"devDependencies": {
-		"rollup": "^4.41.0",
+		"@rollup/plugin-typescript": "^12.1.2",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.15.18",
+		"del-cli": "^6.0.0",
+		"jest": "^29.7.0",
+		"rollup": "^4.40.2",
 		"rollup-plugin-delete": "^3.0.1",
-		"rollup-plugin-dts": "^6.2.1"
+		"rollup-plugin-dts": "^6.2.1",
+		"rollup-plugin-sourcemaps": "^0.6.3",
+		"ts-jest": "^29.3.4",
+		"ts-node": "^10.9.2",
+		"tslib": "^2.8.1"
 	}
 }

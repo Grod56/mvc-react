@@ -9,9 +9,6 @@
 		"packages/mvc",
 		"packages/stateful"
 	],
-	"scripts": {
-		"test": "jest"
-	},
 	"devDependencies": {
 		"@eslint/js": "^9.27.0",
 		"@testing-library/dom": "^10.4.0",

@@ -31,18 +31,26 @@ export const testViewInteractionInterface: TestViewInteractionInterface = {
 	),
 };
 
-export const faultyViewInteractionInterface: TestViewInteractionInterface = {
-	produceModelView: jest.fn((_: TestModelInteraction) => {
-		return Promise.reject("Rejected!");
-	}),
-};
+export function faultyViewInteractionInterface(
+	errorMessage: string
+): TestViewInteractionInterface {
+	return {
+		produceModelView: jest.fn((_: TestModelInteraction) => {
+			return Promise.reject(errorMessage);
+		}),
+	};
+}
 
 export const testStatifiableModel: TestStatifiableModel = {
 	modelView: testModelView,
 	viewInteractionInterface: testViewInteractionInterface,
 };
 
-export const faultyTestStatifiableModel: TestStatifiableModel = {
-	modelView: testModelView,
-	viewInteractionInterface: faultyViewInteractionInterface,
-};
+export function faultyTestStatifiableModel(
+	errorMessage: string
+): TestStatifiableModel {
+	return {
+		modelView: testModelView,
+		viewInteractionInterface: faultyViewInteractionInterface(errorMessage),
+	};
+}

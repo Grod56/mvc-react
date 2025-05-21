@@ -1,6 +1,6 @@
 {
 	"name": "@mvc-react/stateful",
-	"version": "2.2.0",
+	"version": "2.2.2",
 	"description": "Lean toolkit for stateful MVC use cases in React",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/stateful",
 	"author": {
@@ -24,7 +24,7 @@
 		"directory": "packages/stateful"
 	},
 	"type": "module",
-	"module": "index.mjs",
+	"module": "./dist/index.mjs",
 	"main": "./dist/index.cjs",
 	"types": "./dist/index.d.ts",
 	"files": [
@@ -39,11 +39,11 @@
 	},
 	"scripts": {
 		"clean": "del-cli ./dist",
-		"test": "jest",
-		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'",
 		"build": "npm run clean && rollup -c",
 		"prepack": "npm run build",
-		"prepublish": "npm test"
+		"prepublishOnly": "npm test",
+		"test": "jest",
+		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'"
 	},
 	"dependencies": {
 		"@mvc-react/mvc": "latest",

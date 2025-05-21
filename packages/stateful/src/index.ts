@@ -61,8 +61,8 @@ export function useInitializedStatefulInteractiveModel<
 				.then((newModelView: U) => {
 					setModelView(newModelView);
 				})
-				.catch((error: Error) => {
-					console.error("Interaction failed: %s", String(error));
+				.catch((error) => {
+					console.error(`Interaction failed: ${String(error)}`);
 				});
 		},
 		[memoizedViewInteractionInterface]

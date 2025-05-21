@@ -57,8 +57,11 @@ describe("useNewStatefulInteractiveModel", () => {
 	it("reports error when interaction fails", () => {
 		const consoleErrorSpy = jest.spyOn(console, "error");
 		consoleErrorSpy.mockImplementation();
+		const errorMessage = "Nope!";
 		const renderedHook = renderHook(() =>
-			useNewStatefulInteractiveModel(faultyViewInteractionInterface)
+			useNewStatefulInteractiveModel(
+				faultyViewInteractionInterface(errorMessage)
+			)
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -68,7 +71,9 @@ describe("useNewStatefulInteractiveModel", () => {
 			});
 		});
 		waitFor(() => {
-			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
+				expect.stringContaining(errorMessage)
+			);
 		});
 	});
 });
@@ -125,9 +130,10 @@ describe("useInitializedStatefulInteractiveModel", () => {
 	it("reports error when an interaction fails", () => {
 		const consoleErrorSpy = jest.spyOn(console, "error");
 		consoleErrorSpy.mockImplementation();
+		const errorMessage = "Nada";
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
-				faultyViewInteractionInterface,
+				faultyViewInteractionInterface(errorMessage),
 				testModelView
 			)
 		);
@@ -139,7 +145,9 @@ describe("useInitializedStatefulInteractiveModel", () => {
 			});
 		});
 		waitFor(() => {
-			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
+				expect.stringContaining(errorMessage)
+			);
 		});
 	});
 });
@@ -189,8 +197,11 @@ describe("useTransformedStatefulInteractiveModel", () => {
 	it("reports error when an interaction fails", () => {
 		const consoleErrorSpy = jest.spyOn(console, "error");
 		consoleErrorSpy.mockImplementation();
+		const errorMessage = "Rejected!";
 		const renderedHook = renderHook(() =>
-			useTransformedStatefulInteractiveModel(faultyTestStatifiableModel)
+			useTransformedStatefulInteractiveModel(
+				faultyTestStatifiableModel(errorMessage)
+			)
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -200,7 +211,9 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			});
 		});
 		waitFor(() => {
-			expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(String));
+			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
+				expect.stringContaining(errorMessage)
+			);
 		});
 	});
 });
