@@ -1,6 +1,7 @@
 # mvc-react/mvc
 
 [![build](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml)
+
 Toolkit for defining MVC applications in Typescript.
 
 ## Installation
