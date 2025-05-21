@@ -39,7 +39,7 @@ export type ModelInteraction<T, I extends object | null = object | null> = {
 	readonly input: I;
 };
 
-/**Convenience function for constructing an new {@link ReadonlyModel}
+/**Convenience function for constructing a new {@link ReadonlyModel}
  * @param modelView - Model view of model to be constructed
  * @returns New readonly model initialized with `modelView`
  */
