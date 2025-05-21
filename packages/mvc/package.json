@@ -1,6 +1,6 @@
 {
 	"name": "@mvc-react/mvc",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Toolkit for defining MVC applications",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/mvc",
 	"author": {
@@ -16,7 +16,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Grod56/mvc-react.git",
+		"url": "git+https://github.com/Grod56/mvc-react.git",
 		"directory": "packages/mvc"
 	},
 	"type": "module",
@@ -32,8 +32,7 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts"
-		},
-		"./package.json": "./package.json"
+		}
 	},
 	"devDependencies": {
 		"rollup": "^4.41.0",

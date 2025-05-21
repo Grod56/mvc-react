@@ -10,6 +10,11 @@ export default [
 		output: [
 			{
 				sourcemap: "inline",
+				file: "dist/index.cjs",
+				format: "cjs",
+			},
+			{
+				sourcemap: "inline",
 				file: "dist/index.mjs",
 				format: "es",
 			},
