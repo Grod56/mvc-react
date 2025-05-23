@@ -48,12 +48,12 @@ The `ReadonlyModel` type represents a `Model` with an immutable `modelView`.
 
 The `InteractiveModel` type represents a `Model` whose `modelView` changes according to specified model 'interactions'. It consists of an additional `interact` function, which takes a single `ModelInteraction` object as an argument and mutates the model's `modelView` accordingly.
 
-A `ModelInteraction` object has two properties: `type`—which specifies the type of interaction to be executed; and an optional `input` object which encapsulates the interaction's input data if there is any.
+A `ModelInteraction` basically comes in two forms: as a simple `ModelInteraction` which has a single property, `type`—which specifies the type of interaction to be executed; or as an `InputModelInteraction` which, as aptly named, contains an additional `input` property which encapsulates the interaction's input data if there is any.
 
 #### Example 2:
 
 ```ts
-import { InteractiveModel, Model, ModelInteraction } from @mvc-react/mvc;
+import { InteractiveModel, Model, InputModelInteraction } from @mvc-react/mvc;
 
 // Our custom ModelView definition
 interface CalculatorView {
@@ -62,8 +62,8 @@ interface CalculatorView {
 
 // The interactions our model will handle
 type CalculatorInteraction = (
-   ModelInteraction<"add", {x: number, y: number}> |
-   ModelInteraction<"subtract", {x: number, y: number}>
+   InputModelInteraction<"add", {x: number, y: number}> |
+   InputModelInteraction<"subtract", {x: number, y: number}>
 )
 
 // Our custom Model definition

@@ -24,10 +24,6 @@ permissions:
     contents: write
 
 jobs:
-    # call-build:
-    #     uses: ./.github/actions/build
-    #     with:
-    #         package: ${{ inputs.package }}
     publish:
         name: "'${{ inputs.package }}' Publish"
         runs-on: ubuntu-latest
@@ -40,6 +36,11 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                   node-version: "22"
+
+            - name: Build
+              uses: ./.github/actions/build
+              with:
+                  package: ${{ inputs.package }}
 
             - name: Update package.json with new version
               run: |
