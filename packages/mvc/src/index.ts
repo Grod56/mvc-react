@@ -32,12 +32,12 @@ export interface InteractiveModel<
 
 /**Encapsulates a singular model interaction/activity
  * which accordingly mutates the {@link Model}'s {@link ModelView}. */
-export type ModelInteraction<T, I extends object | null = object | null> = {
+export interface ModelInteraction<T, I extends object = object> {
 	/**The kind of interaction. */
 	readonly type: T;
 	/**The interaction's corresponding input data, if any. */
-	readonly input: I;
-};
+	readonly input?: I;
+}
 
 /**Convenience function for constructing a new {@link ReadonlyModel}
  * @param modelView - Model view of model to be constructed

@@ -18,7 +18,9 @@ jobs:
                   node-version: "22"
 
             - name: Navigate to workspace folder
-              run: cd ./packages/${{ inputs.package }}
+              run: |
+                  cd packages/${{ inputs.package }}
+                  ls
 
             - name: Install Dependencies
               run: npm ci --workspaces=false
