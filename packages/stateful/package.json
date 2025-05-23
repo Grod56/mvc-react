@@ -1,6 +1,6 @@
 {
 	"name": "@mvc-react/stateful",
-	"version": "2.2.2",
+	"version": "2.2.3",
 	"description": "Lean toolkit for stateful MVC use cases in React",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/stateful",
 	"author": {
