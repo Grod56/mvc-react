@@ -54,6 +54,9 @@ jobs:
                   echo "Applying $TYPE version update to '$PACKAGE'"
                   npm version $TYPE
 
+            - name: Post-version-update ci ## For tests, apparently
+              run: npm ci --workspaces=false
+
             - name: Publish to npm
               run: npm publish --access public --workspaces=false
               env:
