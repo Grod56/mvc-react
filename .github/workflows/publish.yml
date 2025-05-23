@@ -24,8 +24,6 @@ permissions:
     contents: write
 
 jobs:
-    coverage-badges:
-        uses: "./.github/workflows/coverage-badges.yml"
     publish:
         name: "'${{ inputs.package }}' Publish"
         runs-on: ubuntu-latest
