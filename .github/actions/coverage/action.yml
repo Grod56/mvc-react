@@ -12,7 +12,9 @@ runs:
             working-directory: ./packages/${{ inputs.package }}
     steps:
         - name: Install Dependencies
+          shell: bash
           run: npm ci --workspaces=false
 
         - name: Run Coverage
+          shell: bash
           run: npm run test:cov

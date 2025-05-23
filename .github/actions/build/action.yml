@@ -12,10 +12,13 @@ runs:
             working-directory: ./packages/${{ inputs.package }}
     steps:
         - name: Install Dependencies
+          shell: bash
           run: npm ci --workspaces=false
 
         - name: Run Tests
+          shell: bash
           run: npm run test
 
         - name: Run Build
+          shell: bash
           run: npm run build
