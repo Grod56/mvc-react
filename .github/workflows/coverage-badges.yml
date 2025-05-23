@@ -9,6 +9,7 @@ on:
         paths:
             - "packages/**/src/**"
         branches: [main]
+    workflow_call:
 
 jobs:
     generate-badges:
