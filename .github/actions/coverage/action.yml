@@ -7,14 +7,14 @@ inputs:
 
 runs:
     using: "composite"
-    defaults:
-        run:
-            working-directory: ./packages/${{ inputs.package }}
+
     steps:
         - name: Install Dependencies
           shell: bash
           run: npm ci --workspaces=false
+          working-directory: ./packages/${{ inputs.package }}
 
         - name: Run Coverage
           shell: bash
           run: npm run test:cov
+          working-directory: ./packages/${{ inputs.package }}
