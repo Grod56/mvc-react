@@ -4,7 +4,7 @@ import {
 	ComponentPlaceholderModel,
 	GeneralComponent,
 	ModeledVoidComponent,
-} from "../../../src";
+} from "../..";
 
 type TestPlaceholderedComponentModelView = {
 	text: string;

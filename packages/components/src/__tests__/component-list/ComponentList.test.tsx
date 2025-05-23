@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { getTestModel } from "./data";
-import { ComponentList } from "../../../src";
+import { ComponentList } from "../..";
 
 describe("ComponentList", () => {
 	const getTestComponent = () =>

@@ -1,5 +1,5 @@
 import { ReadonlyModel } from "@mvc-react/mvc";
-import { ComponentListModel, ModeledVoidComponent } from "../../../src";
+import { ComponentListModel, ModeledVoidComponent } from "../..";
 
 type TestModelView = {
 	text: string;

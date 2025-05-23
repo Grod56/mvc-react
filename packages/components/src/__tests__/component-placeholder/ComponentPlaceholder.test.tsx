@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import { useTestData } from "./data";
-import { ComponentPlaceholder } from "../../../src";
+import { ComponentPlaceholder } from "../..";
 
 describe("ComponentPlaceholder", () => {
 	const getPlaceholderedComponent = () =>

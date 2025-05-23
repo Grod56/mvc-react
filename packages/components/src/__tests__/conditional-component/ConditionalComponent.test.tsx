@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import { TestCondition, useTestData } from "./data";
-import { ConditionalComponent, GeneralComponent } from "../../../src";
+import { ConditionalComponent, GeneralComponent } from "../..";
 
 describe("ConditionalComponent", () => {
 	const getComponents = () =>

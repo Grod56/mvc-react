@@ -23,13 +23,11 @@ jobs:
             - name: Run Coverage
               run: npm run test:cov -w=packages/${{ inputs.package }}
 
-            - name: Switch to badges branch
-              run: git switch --orphan gh-pages
-
             - name: Generating coverage badge
               uses: jpb06/coverage-badges-action@latest
               with:
                   coverage-summary-path: |
                       ./packages/${{ inputs.package }}/coverage/coverage-summary.json
                   output-folder: |
-                      ./badges/${{ inputs.package }}
+                      ./badges
+                  badges-labels-prefix: coverage

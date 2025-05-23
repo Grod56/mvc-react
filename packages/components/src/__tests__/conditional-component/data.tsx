@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ConditionalComponentModel, GeneralComponent } from "../../../src";
+import { ConditionalComponentModel, GeneralComponent } from "../..";
 
 export type TestCondition = "AB" | "CD";
 
