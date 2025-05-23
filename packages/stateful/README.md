@@ -14,7 +14,7 @@ npm install --save @mvc-react/stateful
 
 This package allows you to utilize stateful `InteractiveModel`s in your React application. Statefulness, in this context, simply means that the model properties persist between component renders.
 
-The model's `modelView` is observable and only changes when altered by the model's `interact` method. This drastically simplifies state logic and management for React components and hooks which are patterned after the stateful models.
+The model's `modelView` is observable and only changes when altered by the model's `interact` method. This drastically simplifies state logic and management for React components and hooks which are based on this framework.
 
 ## Types
 
@@ -32,22 +32,22 @@ The interface contains a single function, `produceModelView`, which accepts a `M
 import { ViewInteractionInterface } from @mvc-react/stateful;
 
 const interface: ViewInteractionInterface<
-    CalculatorModelView,
-    CalculatorInteraction
+   CalculatorModelView,
+   CalculatorInteraction
 > = {
-    produceModelView(interaction: CalculatorInteraction) {
-	   switch (interaction.type) {
-		   case "add": {
-			   const { x, y } = interaction.input!;
-			   return Promise.resolve({ display: x + y });
-		   }
-		   case "subtract": {
-			   const { x, y } = interaction.input!;
-			   return Promise.resolve({ display: x - y });
-		   }
-		   default:
-			   return Promise.reject("Unhandled interaction");
-	   }
+   produceModelView(interaction: CalculatorInteraction) {
+      switch (interaction.type) {
+         case "add": {
+            const { x, y } = interaction.input!;
+            return Promise.resolve({ display: x + y });
+         }
+         case "subtract": {
+            const { x, y } = interaction.input!;
+            return Promise.resolve({ display: x - y });
+         }
+         default:
+            return Promise.reject("Unhandled interaction");
+      }
    }
 }
 ```

@@ -10,11 +10,19 @@ Toolkit for defining MVC applications in Typescript.
 npm install --save-dev @mvc-react/mvc
 ```
 
+## Benefits
+
+When properly implemented, this framework:
+
+-   Makes your item/unit/module intuitive and easy to understand
+-   Naturally abstracts different aspects of your item, making it flexible and scalable
+-   Makes the item drastically easier to test
+
 ## Documentation
 
 ### `Model`
 
-The `Model` type encapsulates the essence of any item that can be viewed or interacted with. It represents the item's archetype, and generally consists of a `ModelView` object—which is where the model's properties are articulated.
+The `Model` type encapsulates the essence of any item that can be viewed or interacted with, e.g. a book, a repository, a component, etc. It represents the item's archetype, that is, it defines the item's overall pattern and its properties. It generally consists of a `ModelView`—which is where the model's properties are articulated.
 
 #### Example 1:
 
@@ -23,20 +31,20 @@ import { Model } from @mvc-react/mvc;
 
 // Our custom ModelView
 interface BookView {
-    title: string;
-    author: string;
-    isbn: string;
+   title: string;
+   author: string;
+   isbn: string;
 }
 
 // Our custom Model definition
 type BookModel = Model<BookView>;
 
 const book: BookModel = {
-    modelView: {
-        title: "Screwtape Letters",
-        author: "C.S. Lewis",
-        isbn: "XXXX-XXXXX-XXXXX"
-    }
+   modelView: {
+      title: "Screwtape Letters",
+      author: "C.S. Lewis",
+      isbn: "XXXX-XXXXX-XXXXX"
+   }
 }
 ```
 
@@ -74,22 +82,22 @@ type CalculatorModel = InteractiveModel<
 
 // Implemented
 const calculator: CalculatorModel = {
-    modelView: {
-       display: 0,
-    },
-    interact(interaction: CalculatorInteraction) {
-	switch (interaction.type) {
-	   case "add": {
-		 const { x, y } = interaction.input!;
-		   this.modelView = { display: x + y };
-		   break;
-	   }
-	   case "subtract": {
-		 const { x, y } = interaction.input!;
-		   this.modelView = { display: x - y };
-		   break;
-		 }
-	   }
+   modelView: {
+      display: 0,
+   },
+   interact(interaction: CalculatorInteraction) {
+      switch (interaction.type) {
+         case "add": {
+            const { x, y } = interaction.input!;
+            this.modelView = { display: x + y };
+            break;
+         }
+         case "subtract": {
+            const { x, y } = interaction.input!;
+            this.modelView = { display: x - y };
+            break;
+         }
+      }
 	}
 }
 ```

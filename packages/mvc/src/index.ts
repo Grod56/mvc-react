@@ -2,7 +2,7 @@
  * (e.g. component, repository, database table record, etc.). */
 export interface Model<V extends ModelView> {
 	/**The model's {@link ModelView} */
-	modelView: Readonly<V> | null;
+	readonly modelView: Readonly<V> | null;
 }
 
 /**Encapsulates what a client sees/the current 'state' of a {@link Model}. */

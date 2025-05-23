@@ -20,8 +20,9 @@ take in a single prop `model` which models what the UI displays and how the user
 When properly implemented, this framework:
 
 -   Makes your components intuitive
--   Greatly simplifies component logic
--   Makes the component easier to test
+-   Allows for greater view flexibility
+-   Naturally decouples core/functional component logic from the component view logic,
+    making it simpler to test
 
 ## Types
 
@@ -49,22 +50,22 @@ const Book: ModeledVoidComponent<BookModel> = function ({ model }) {
 
 ```tsx
 const BookRepository = function({ model }) {
-  const { bookModels } = model.modelView;
-  const { interact } = model.interact;
+   const { bookModels } = model.modelView;
+   const { interact } = model.interact;
 
-  return (
-    <>
-      <div className='books-container'>
-        <ComponentList // This component is available out-of-the-box
-          model={newReadonlyModel({
-              Component: Book,
-	  		  componentModels: bookModels,
-          })}
-        />
-      </div>
-      <button onClick={interact({"Refresh Models"})}>Refresh</button>
-    </>
-  )
+   return (
+      <>
+         <div className='books-container'>
+            <ComponentList // This component is available out-of-the-box
+               model={newReadonlyModel({
+                  Component: Book,
+                  componentModels: bookModels,
+               })}
+            />
+         </div>
+         <button onClick={interact({"Refresh Models"})}>Refresh</button>
+      </>
+   );
 } as ModeledVoidComponent<BookRepositoryModel>
 ```
 
@@ -145,37 +146,37 @@ Component that renders different components depending on a provided condition.
 
 ```tsx
 const BookRepository = function({ model }) {
-  const { bookModels, condition } = model.modelView;
-  const { interact } = model.interact;
+   const { bookModels, condition } = model.modelView;
+   const { interact } = model.interact;
 
-  const SuccessComponent = () => (
+   const SuccessComponent = () => (
       <div className='books-container'>
-        <ComponentList
-        model={
-            modelView: {
-            componentModels: bookModels,
-            Component: Book,
+         <ComponentList
+            model={
+               modelView: {
+                  componentModels: bookModels,
+                  Component: Book,
+               }
             }
-        }
         />
       </div>
-  );
+   );
 
-  return (
-    <>
-      <ConditionalComponent
-        model={newReadonlyModel({
-          condition: condition,
-          components: new Map([
-            ["success", SuccessComponent],
-            ["pending", () => <PendingSkeleton />],
-            ["failed", () => <FailedSkeleton />]
-          ]),
-          FallbackComponent: () => <></>,
-        })}
-      />
-      <button onClick={interact({"Refresh Models"})}>Refresh</button>
-    </>
+   return (
+      <>
+         <ConditionalComponent
+            model={newReadonlyModel({
+               condition: condition,
+               components: new Map([
+                  ["success", SuccessComponent],
+                  ["pending", () => <PendingSkeleton />],
+                  ["failed", () => <FailedSkeleton />]
+               ]),
+               FallbackComponent: () => <></>,
+            })}
+         />
+         <button onClick={interact({"Refresh Models"})}>Refresh</button>
+      </>
   );
 } as ModeledVoidComponent<BookRepositoryModel>
 ```
