@@ -1,4 +1,4 @@
-import { newReadonlyModel } from "..";
+import { newReadonlyModel } from "../../src";
 
 describe("newReadonlyModel", () => {
 	it("outputs model with equivalent model view", () => {

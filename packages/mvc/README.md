@@ -1,6 +1,6 @@
 # mvc-react/mvc
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml) [![unit tests](https://github.com/Grod56/mvc-react/actions/workflows/mvc-unit-tests.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-unit-tests.yml)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml) [![coverage](https://Grod56.github.io/mvc-react/badges/mvc/coverage.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-coverage.yml)
 
 Toolkit for defining MVC applications in Typescript.
 
@@ -16,7 +16,7 @@ npm install --save-dev @mvc-react/mvc
 
 The `Model` type encapsulates the essence of any item that can be viewed or interacted with. It represents the item's archetype, and generally consists of a `ModelView` object—which is where the model's properties are articulated.
 
-Example:
+#### Example 1:
 
 ```ts
 import { Model } from @mvc-react/mvc;
@@ -50,7 +50,7 @@ The `InteractiveModel` type represents a `Model` whose `modelView` changes accor
 
 A `ModelInteraction` object has two properties: `type`—which specifies the type of interaction to be executed; and an optional `input` object which encapsulates the interaction's input data if there is any.
 
-Example:
+#### Example 2:
 
 ```ts
 import { InteractiveModel, Model, ModelInteraction } from @mvc-react/mvc;
@@ -104,6 +104,7 @@ console.log(calculator.modelView); // { display: 5 }
 
 Convenience function for constructing a new `ReadonlyModel`
 
-## See related
+## See Related
 
 -   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)
+-   [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)

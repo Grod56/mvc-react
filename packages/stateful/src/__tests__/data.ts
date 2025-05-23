@@ -1,5 +1,5 @@
 import { ModelInteraction } from "@mvc-react/mvc";
-import { ViewInteractionInterface, StatifiableModel } from "../";
+import { ViewInteractionInterface, StatifiableModel } from "../../src";
 
 export interface TestModelView {
 	displayValue: string;

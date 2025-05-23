@@ -1,8 +1,8 @@
 {
-	"name": "@mvc-react/stateful",
-	"version": "2.2.2",
-	"description": "Lean toolkit for stateful MVC use cases in React",
-	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/stateful",
+	"name": "@mvc-react/components",
+	"version": "1.0.0",
+	"description": "Framework for developing MVC-based React components",
+	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/components",
 	"author": {
 		"name": "Garikai Gumbo",
 		"email": "providenceuniversalstudios@gmail.com"
@@ -10,18 +10,16 @@
 	"license": "MIT",
 	"keywords": [
 		"mvc",
-		"state",
-		"management",
 		"model",
 		"view",
 		"controller",
-		"observable",
+		"components",
 		"react"
 	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Grod56/mvc-react.git",
-		"directory": "packages/stateful"
+		"directory": "packages/components"
 	},
 	"type": "module",
 	"module": "./dist/index.mjs",
@@ -50,6 +48,7 @@
 	},
 	"devDependencies": {
 		"@mvc-react/mvc": "^2.1.1",
+		"@rollup/plugin-babel": "^6.0.4",
 		"@rollup/plugin-typescript": "^12.1.2",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",

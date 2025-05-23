@@ -3,7 +3,7 @@ import {
 	useInitializedStatefulInteractiveModel,
 	useNewStatefulInteractiveModel,
 	useTransformedStatefulInteractiveModel,
-} from "../";
+} from "../../src";
 import {
 	faultyTestStatifiableModel,
 	faultyViewInteractionInterface,

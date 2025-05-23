@@ -1,8 +1,8 @@
 # mvc-react/stateful
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml) [![coverage](https://Grod56.github.io/mvc-react/badges/coverage.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-unit-tests.yml)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-build.yml) [![coverage](https://Grod56.github.io/mvc-react/badges/stateful/coverage.svg)](https://github.com/Grod56/mvc-react/actions/workflows/stateful-coverage.yml)
 
-Lean toolkit for 'stateful' MVC use cases in React. Uses definitions specified in `@mvc-react/mvc` (see more [here](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)).
+Lean toolkit for 'stateful' MVC use cases in React. It is based on `@mvc-react/mvc` (see more [here](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)).
 
 ## Installation
 
@@ -26,7 +26,7 @@ Represents a `Model` that can be transformed into a stateful `InteractiveModel`.
 
 The interface contains a single function, `produceModelView`, which accepts a `ModelInteraction` and returns a Promise for the new corresponding `ModelView`.
 
-Example:
+#### Example:
 
 ```ts
 import { ViewInteractionInterface } from @mvc-react/stateful;
@@ -66,6 +66,7 @@ Constructs stateful `InteractiveModel` with observable `modelView`, which is bas
 
 Transforms provided statifiable model into new stateful `InteractiveModel` with observable `modelView`.
 
-## See related
+## See Related
 
 -   [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
+-   [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)
