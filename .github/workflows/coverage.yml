@@ -1,4 +1,4 @@
-name: "coverage"
+name: "coverage template"
 
 on:
     workflow_call:
