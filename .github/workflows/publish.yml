@@ -27,6 +27,9 @@ jobs:
     publish:
         name: "'${{ inputs.package }}' Publish"
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: packages/${{ inputs.package }}
 
         steps:
             - uses: actions/checkout@v4
@@ -49,7 +52,7 @@ jobs:
                   TYPE=${{ inputs.type }}
                   PACKAGE=${{ inputs.package }}
                   echo "Applying $TYPE version update to '$PACKAGE'"
-                  npm version $TYPE -w=packages/$PACKAGE
+                  npm version $TYPE
 
             - name: Commit and push version update
               run: |
@@ -57,13 +60,13 @@ jobs:
                   PACKAGE=${{ inputs.package }}
                   git config user.name "github-actions"
                   git config user.email "github-actions@github.com"
-                  git add .
+                  git add package.json package-lock.json
                   git commit -m "Update '$PACKAGE' package.json"
                   git push origin ${{ github.event.repository.default_branch }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish to npm
-              run: npm publish --access public -w=packages/${{ inputs.package }}
+              run: npm publish --access public --workspaces=false
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

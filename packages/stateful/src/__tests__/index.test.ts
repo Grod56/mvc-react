@@ -41,13 +41,10 @@ describe("useNewStatefulInteractiveModel", () => {
 			useNewStatefulInteractiveModel(testViewInteractionInterface)
 		);
 		const model = renderedHook.result.current;
-		act(() =>
-			model.interact({ type: TestModelInteractionType.TEST, input: null })
-		);
+		act(() => model.interact({ type: TestModelInteractionType.TEST }));
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
-				input: null,
 			});
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
@@ -67,7 +64,6 @@ describe("useNewStatefulInteractiveModel", () => {
 		act(() => {
 			model.interact({
 				type: TestModelInteractionType.TEST,
-				input: null,
 			});
 		});
 		waitFor(() => {
@@ -114,13 +110,10 @@ describe("useInitializedStatefulInteractiveModel", () => {
 			)
 		);
 		const model = renderedHook.result.current;
-		act(() =>
-			model.interact({ type: TestModelInteractionType.TEST, input: null })
-		);
+		act(() => model.interact({ type: TestModelInteractionType.TEST }));
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView({
 				type: TestModelInteractionType.TEST,
-				input: null,
 			});
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
@@ -141,7 +134,6 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		act(() => {
 			model.interact({
 				type: TestModelInteractionType.TEST,
-				input: null,
 			});
 		});
 		waitFor(() => {
@@ -179,14 +171,11 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			useTransformedStatefulInteractiveModel(testStatifiableModel)
 		);
 		const model = renderedHook.result.current;
-		act(() =>
-			model.interact({ type: TestModelInteractionType.TEST, input: null })
-		);
+		act(() => model.interact({ type: TestModelInteractionType.TEST }));
 		const expectedModelView =
 			await testStatifiableModel.viewInteractionInterface.produceModelView(
 				{
 					type: TestModelInteractionType.TEST,
-					input: null,
 				}
 			);
 		waitFor(() => {
@@ -207,7 +196,6 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		act(() => {
 			model.interact({
 				type: TestModelInteractionType.TEST,
-				input: null,
 			});
 		});
 		waitFor(() => {
