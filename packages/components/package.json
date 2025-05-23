@@ -48,6 +48,7 @@
 		"react": "^19.1.0"
 	},
 	"devDependencies": {
+		"@mvc-react/mvc": "^2.1.1",
 		"@rollup/plugin-babel": "^6.0.4",
 		"@rollup/plugin-typescript": "^12.1.2",
 		"@testing-library/dom": "^10.4.0",
