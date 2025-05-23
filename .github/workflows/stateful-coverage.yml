@@ -7,6 +7,7 @@ on:
         paths:
             - "packages/stateful/src/**"
         branches: [main]
+    workflow_dispatch:
 
 jobs:
     call-coverage:

@@ -7,6 +7,7 @@ on:
         paths:
             - "packages/components/src/**"
         branches: [main]
+    workflow_dispatch:
 
 jobs:
     call-coverage:
