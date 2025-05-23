@@ -44,11 +44,6 @@ jobs:
               with:
                   package: ${{ inputs.package }}
 
-            - name: Coverage bades
-              uses: ./.github/actions/build
-              with:
-                  package: ${{ inputs.package }}
-
             - name: Update package.json with new version
               run: |
                   TYPE=${{ inputs.type }}
@@ -62,7 +57,7 @@ jobs:
                   PACKAGE=${{ inputs.package }}
                   git config user.name "github-actions"
                   git config user.email "github-actions@github.com"
-                  git add package.json package-lock.json
+                  git add .
                   git commit -m "Update '$PACKAGE' package.json"
                   git push origin ${{ github.event.repository.default_branch }}
               env:
