@@ -30,7 +30,7 @@ jobs:
               uses: jpb06/coverage-badges-action@latest
               with:
                   coverage-summary-path: |
-                      ./coverage/coverage-summary.json
+                      ./packages/${{ inputs.package }}/coverage/coverage-summary.json
                   output-folder: |
                       ./badges
                   badges-labels-prefix: coverage
