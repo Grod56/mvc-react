@@ -17,17 +17,20 @@ jobs:
               with:
                   node-version: "22"
 
+            - name: Navigate to workspace folder
+              run: cd ./packages/${{ inputs.package }}
+
             - name: Install Dependencies
-              run: npm ci -w=packages/${{ inputs.package }}
+              run: npm ci --workspaces=false
 
             - name: Run Coverage
-              run: npm run test:cov -w=packages/${{ inputs.package }}
+              run: npm run test:cov
 
             - name: Generating coverage badge
               uses: jpb06/coverage-badges-action@latest
               with:
                   coverage-summary-path: |
-                      ./packages/${{ inputs.package }}/coverage/coverage-summary.json
+                      ./coverage/coverage-summary.json
                   output-folder: |
                       ./badges
                   badges-labels-prefix: coverage

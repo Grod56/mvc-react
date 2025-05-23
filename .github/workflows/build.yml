@@ -17,11 +17,14 @@ jobs:
               with:
                   node-version: "22"
 
+            - name: Navigate to workspace folder
+              run: cd ./packages/${{ inputs.package }}
+
             - name: Install Dependencies
-              run: npm ci -w=packages/${{ inputs.package }}
+              run: npm ci --workspaces=false
 
             - name: Run Tests
-              run: npm run test -w=packages/${{ inputs.package }}
+              run: npm run test
 
             - name: Run Build
-              run: npm run build -w=packages/${{ inputs.package }}
+              run: npm run build
