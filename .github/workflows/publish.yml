@@ -54,6 +54,11 @@ jobs:
                   echo "Applying $TYPE version update to '$PACKAGE'"
                   npm version $TYPE
 
+            - name: Publish to npm
+              run: npm publish --access public --workspaces=false
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - name: Commit and push version update
               run: |
                   TYPE=${{ inputs.type }}
@@ -65,8 +70,3 @@ jobs:
                   git push origin ${{ github.event.repository.default_branch }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Publish to npm
-              run: npm publish --access public --workspaces=false
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
