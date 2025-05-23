@@ -25,12 +25,3 @@ jobs:
 
             - name: Run Coverage
               run: npm run test:cov
-
-            - name: Generating coverage badge
-              uses: jpb06/coverage-badges-action@latest
-              with:
-                  coverage-summary-path: |
-                      ./packages/${{ inputs.package }}/coverage/coverage-summary.json
-                  output-folder: |
-                      ./badges
-                  badges-labels-prefix: coverage

@@ -1,0 +1,36 @@
+name: "coverage badges"
+
+on:
+    push:
+        paths:
+            - "packages/**/src/**"
+        branches: [main]
+    pull_request:
+        paths:
+            - "packages/**/src/**"
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    generate-badges:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+            - uses: "./.github/workflows/mvc-coverage.yml"
+            - uses: "./.github/workflows/components-coverage.yml"
+            - uses: "./.github/workflows/stateful-coverage.yml"
+
+              with:
+                  node-version: "22"
+
+            - name: Generating coverage badge
+              uses: jpb06/coverage-badges-action@latest
+              with:
+                  coverage-summary-path: |
+                      ./packages/mvc/coverage/coverage-summary.json
+                      ./packages/stateful/coverage/coverage-summary.json
+                      ./packages/components/coverage/coverage-summary.json
+                  output-folder: |
+                      ./badges
+                  badges-labels-prefix: coverage
