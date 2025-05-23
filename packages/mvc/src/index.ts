@@ -2,7 +2,7 @@
  * (e.g. component, repository, database table record, etc.). */
 export interface Model<V extends ModelView> {
 	/**The model's {@link ModelView} */
-	readonly modelView: Readonly<V> | null;
+	modelView: Readonly<V> | null;
 }
 
 /**Encapsulates what a client sees/the current 'state' of a {@link Model}. */
@@ -23,7 +23,7 @@ export interface InteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<T>,
 	T = unknown
-> extends Model<V> {
+> extends Readonly<Model<V>> {
 	/**Initiates a model interaction.
 	 * @param interaction - Interaction to be executed.
 	 */
@@ -51,5 +51,5 @@ export interface InputModelInteraction<T, I extends object>
 export function newReadonlyModel<V extends object>(
 	modelView: V
 ): ReadonlyModel<V> {
-	return { modelView };
+	return Object.freeze({ modelView });
 }

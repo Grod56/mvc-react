@@ -81,20 +81,24 @@ type CalculatorModel = InteractiveModel<
 >;
 
 // Implemented
-const calculator: CalculatorModel = {
-   modelView: {
+class Calculator implements CalculatorModel {
+
+   private _modelView: {
       display: 0,
-   },
+   }
+   get modelView() {
+      return this._modelView;
+   }
    interact(interaction: CalculatorInteraction) {
       switch (interaction.type) {
          case "add": {
             const { x, y } = interaction.input!;
-            this.modelView = { display: x + y };
+            this._modelView = { display: x + y };
             break;
          }
          case "subtract": {
             const { x, y } = interaction.input!;
-            this.modelView = { display: x - y };
+            this._modelView = { display: x - y };
             break;
          }
       }
@@ -104,6 +108,7 @@ const calculator: CalculatorModel = {
 
 ```ts
 // Result
+const calculator = new Calculator();
 calculator.interact({ type: "add", input: { x: 2, y: 3 } });
 console.log(calculator.modelView); // { display: 5 }
 ```
