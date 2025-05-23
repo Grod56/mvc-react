@@ -1,6 +1,6 @@
 # mvc-react/components
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/components/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-coverage.yml)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/components/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-coverage.yml) [![npm](https://img.shields.io/npm/v/%40mvc-react%2Fcomponents)](https://www.npmjs.com/package/@mvc-react/components)
 
 Framework for developing MVC-based React components. It is based on `@mvc-react/mvc` (see more [here](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)).
 

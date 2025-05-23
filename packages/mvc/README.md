@@ -1,6 +1,6 @@
 # mvc-react/mvc
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/mvc/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-coverage.yml)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/mvc/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/mvc-coverage.yml) [![npm](https://img.shields.io/npm/v/%40mvc-react%2Fmvc)](https://www.npmjs.com/package/@mvc-react/mvc)
 
 Toolkit for defining MVC applications in Typescript.
 

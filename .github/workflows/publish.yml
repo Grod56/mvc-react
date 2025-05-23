@@ -1,4 +1,4 @@
-name: publish template
+name: publish
 
 on:
     workflow_dispatch:
