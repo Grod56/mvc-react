@@ -11,6 +11,18 @@ on:
 
 jobs:
     call-build:
-        uses: ./.github/workflows/build.yml
-        with:
-            package: stateful
+        name: "'stateful' build"
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  ref: ${{ github.event.repository.default_branch }}
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+
+            - uses: ./.github/actions/build/
+              with:
+                  package: stateful

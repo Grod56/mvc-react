@@ -17,12 +17,17 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
-            - uses: "./.github/workflows/mvc-coverage.yml"
-            - uses: "./.github/workflows/components-coverage.yml"
-            - uses: "./.github/workflows/stateful-coverage.yml"
-
               with:
                   node-version: "22"
+            - uses: "./.github/actions/coverage"
+              with:
+                  package: mvc
+            - uses: "./.github/actions/coverage"
+              with:
+                  package: components
+            - uses: "./.github/actions/coverage"
+              with:
+                  package: stateful
 
             - name: Generating coverage badge
               uses: jpb06/coverage-badges-action@latest

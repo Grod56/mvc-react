@@ -1,19 +1,28 @@
+name: coverage
 on:
     push:
         paths:
-            - "packages/components/src/**"
+            - "packages/components/**"
         branches: [main]
     pull_request:
         paths:
-            - "packages/components/src/**"
+            - "packages/components/**"
         branches: [main]
-    workflow_call:
 
 jobs:
     call-coverage:
+        name: "'components' coverage"
         runs-on: ubuntu-latest
+
         steps:
-            - uses: actions/checkout@v2
-            - uses: "./.github/workflows/coverage.yml"
+            - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  ref: ${{ github.event.repository.default_branch }}
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+
+            - uses: ./.github/actions/coverage/
               with:
                   package: components

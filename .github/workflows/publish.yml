@@ -24,10 +24,10 @@ permissions:
     contents: write
 
 jobs:
-    call-build:
-        uses: ./.github/workflows/build.yml
-        with:
-            package: ${{ inputs.package }}
+    # call-build:
+    #     uses: ./.github/actions/build
+    #     with:
+    #         package: ${{ inputs.package }}
     publish:
         name: "'${{ inputs.package }}' Publish"
         runs-on: ubuntu-latest
