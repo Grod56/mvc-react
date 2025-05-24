@@ -35,6 +35,7 @@ export default [
 				file: "dist/index.d.ts",
 				format: "es",
 				plugins: [],
+				external: ["@mvc-react/mvc", "react"],
 			},
 		],
 		plugins: [dts(), del({ targets: "dist/dts", hook: "buildEnd" })],
