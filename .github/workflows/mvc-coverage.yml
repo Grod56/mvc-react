@@ -2,11 +2,11 @@ name: coverage
 on:
     push:
         paths:
-            - "packages/mvc/**"
+            - "packages/mvc/src/**"
         branches: [main]
     pull_request:
         paths:
-            - "packages/mvc/**"
+            - "packages/mvc/src/**"
         branches: [main]
 
 jobs:

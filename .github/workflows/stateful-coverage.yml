@@ -2,11 +2,11 @@ name: coverage
 on:
     push:
         paths:
-            - "packages/stateful/**"
+            - "packages/stateful/src/**"
         branches: [main]
     pull_request:
         paths:
-            - "packages/stateful/**"
+            - "packages/stateful/src/**"
         branches: [main]
 
 jobs:
