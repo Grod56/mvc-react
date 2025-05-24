@@ -6,21 +6,19 @@ import sourcemaps from "rollup-plugin-sourcemaps";
 export default [
 	{
 		input: "src/index.tsx",
-
 		output: [
 			{
 				sourcemap: "inline",
 				file: "dist/index.cjs",
 				format: "cjs",
-				external: ["@mvc-react/mvc", "react"],
 			},
 			{
 				sourcemap: "inline",
 				file: "dist/index.mjs",
 				format: "es",
-				external: ["@mvc-react/mvc", "react"],
 			},
 		],
+		external: ["@mvc-react/mvc", "react"],
 		plugins: [
 			typescript({
 				sourceMap: true,
