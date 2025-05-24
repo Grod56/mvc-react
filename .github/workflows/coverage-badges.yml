@@ -1,4 +1,4 @@
-name: "coverage badges"
+name: refresh coverage badges
 
 on:
     push:

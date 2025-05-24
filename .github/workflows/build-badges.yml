@@ -1,0 +1,12 @@
+name: refresh build badges
+
+on:
+    workflow_dispatch:
+
+jobs:
+    mvc-build:
+        uses: "./.github/workflows/mvc-build.yml"
+    components-build:
+        uses: "./.github/workflows/components-build.yml"
+    stateful-build:
+        uses: "./.github/workflows/stateful-build.yml"

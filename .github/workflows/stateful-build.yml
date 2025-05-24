@@ -8,6 +8,7 @@ on:
         paths:
             - "packages/stateful/**"
         branches: [main]
+    workflow_call:
 
 jobs:
     call-build:

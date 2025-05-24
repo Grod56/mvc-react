@@ -8,6 +8,7 @@ on:
         paths:
             - "packages/mvc/**"
         branches: [main]
+    workflow_call:
 
 jobs:
     call-build:
