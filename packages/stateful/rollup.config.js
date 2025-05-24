@@ -12,11 +12,13 @@ export default [
 				sourcemap: "inline",
 				file: "dist/index.cjs",
 				format: "cjs",
+				external: ["@mvc-react/mvc", "react"],
 			},
 			{
 				sourcemap: "inline",
 				file: "dist/index.mjs",
 				format: "es",
+				external: ["@mvc-react/mvc", "react"],
 			},
 		],
 		plugins: [
@@ -35,7 +37,6 @@ export default [
 				file: "dist/index.d.ts",
 				format: "es",
 				plugins: [],
-				external: ["@mvc-react/mvc", "react"],
 			},
 		],
 		plugins: [dts(), del({ targets: "dist/dts", hook: "buildEnd" })],
