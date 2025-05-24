@@ -17,6 +17,7 @@ When properly implemented, this framework:
 -   Makes your item/unit/module intuitive and easy to understand
 -   Naturally abstracts different aspects of your item, making it flexible and scalable
 -   Makes the item drastically easier to test
+-   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them
 
 ## Documentation
 

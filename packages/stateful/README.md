@@ -12,11 +12,18 @@ npm install --save @mvc-react/stateful
 
 ## Summary
 
-This package allows you to utilize stateful `InteractiveModel`s in your React application. Statefulness, in this context, simply means that the model properties persist between component renders.
+This package allows you to utilize stateful `InteractiveModel`s in your React application. Statefulness, in this context, simply means that the model properties/functions persist between component renders.
 
 The model's `modelView` is observable and only changes when altered by the model's `interact` method. This drastically simplifies state logic and management for React components and hooks which are based on this framework.
 
-## Types
+## Benefits
+
+-   Simplifies `InteractiveModel` state logic
+-   Is very lean (only depends on built-in React API)
+-   Is React-DOM agnostic (i.e. can be used with React Native, or any other DOM implementation)
+-   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them
+
+## Documentation
 
 ### `StatifiableModel`
 

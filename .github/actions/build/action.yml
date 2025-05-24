@@ -14,6 +14,10 @@ runs:
           run: npm ci --workspaces=false
           working-directory: ./packages/${{ inputs.package }}
 
+        - name: Run Linter
+          shell: bash
+          run: npx eslint "packages/${{ inputs.package }}/src/**/*.{ts,tsx}"
+
         - name: Run Tests
           shell: bash
           run: npm run test

@@ -7,7 +7,7 @@ import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
 	{
-		files: ["**/*.{js,mjs,cjs,ts}"],
+		files: ["**/*.{js,ts}"],
 		plugins: { js },
 		extends: ["js/recommended"],
 	},
@@ -46,7 +46,7 @@ export default defineConfig([
 		rules: {
 			"@typescript-eslint/no-empty-object-type": "error",
 			"@typescript-eslint/no-unused-vars": [
-				"warn",
+				"error",
 				{ argsIgnorePattern: "^_" },
 			],
 		},
