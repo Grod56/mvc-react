@@ -1,6 +1,6 @@
 {
 	"name": "@mvc-react/mvc",
-	"version": "2.2.1",
+	"version": "2.2.2",
 	"description": "Toolkit for defining MVC applications",
 	"homepage": "https://github.com/Grod56/mvc-react/tree/main/packages/mvc",
 	"author": {
