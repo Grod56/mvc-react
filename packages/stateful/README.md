@@ -21,7 +21,7 @@ The model's `modelView` is observable and only changes when altered by the model
 -   Simplifies `InteractiveModel` state logic
 -   Is very lean (only depends on built-in React API)
 -   Is React-DOM agnostic (i.e. can be used with React Native, or any other DOM implementation)
--   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them
+-   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 ## Documentation
 

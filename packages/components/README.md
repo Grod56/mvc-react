@@ -23,7 +23,7 @@ When properly implemented, this framework:
 -   Allows for greater view flexibility
 -   Naturally decouples core/functional component logic from the component view logic,
     making it simpler to test
--   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them
+-   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 ## Documentation
 
