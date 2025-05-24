@@ -9,7 +9,11 @@ runs:
     using: "composite"
 
     steps:
-        - name: Install Dependencies
+        - name: Install Workspace Dependencies
+          shell: bash
+          run: npm ci --workspaces=false
+
+        - name: Install Package Dependencies
           shell: bash
           run: npm ci --workspaces=false
           working-directory: ./packages/${{ inputs.package }}
