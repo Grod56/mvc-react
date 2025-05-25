@@ -1,4 +1,4 @@
-# mvc-react
+# ![logo](/resources/images/mvc-react-small.svg) mvc-react
 
 Lean framework for MVC applications in Typescript and React.
 
