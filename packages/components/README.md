@@ -25,6 +25,11 @@ When properly implemented, this framework:
     making it simpler to test
 -   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
+💡 Tips:
+
+-   Try to make sure your component's `Model` contains _all_ the properties and functionality essential to the component
+-   Try to move _all_ `Model` logic away from your component and into the model so that there is a one-to-one correspondance between the `ModelView` and what is rendered on your component; and (if applicable) between the Model's `ModelInteraction`s and the events fired by the component
+
 ## Documentation
 
 ### `ModeledVoidComponent`

@@ -10,11 +10,11 @@ import {
 /** Encapsulates {@link Model} that can be transformed into a stateful {@link InteractiveModel}.
  */
 export interface StatifiableModel<
-	V extends ViewInteractionInterface<M, ModelInteraction<T>>,
-	M extends ModelView = ModelView,
-	T = unknown
-> extends Model<M> {
-	readonly viewInteractionInterface: V;
+	V extends ModelView,
+	I extends ModelInteraction<U>,
+	U = unknown
+> extends Model<V> {
+	readonly viewInteractionInterface: ViewInteractionInterface<V, I>;
 }
 
 /**Encapsulates interface that produces a {@link ModelView}
@@ -39,26 +39,25 @@ export interface ViewInteractionInterface<
  * @returns New readonly {@link InteractiveModel} initialized with `initialModelView`
  * */
 export function useInitializedStatefulInteractiveModel<
-	T extends InteractiveModel<U, ModelInteraction<V>>,
-	U extends ModelView = ModelView,
-	V = unknown,
-	W extends ViewInteractionInterface<
-		U,
-		ModelInteraction<V>
-	> = ViewInteractionInterface<U, ModelInteraction<V>>
->(viewInteractionInterface: W, initialModelView: U | null): Readonly<T> {
+	V extends ModelView,
+	I extends ModelInteraction<U>,
+	U = unknown
+>(
+	viewInteractionInterface: ViewInteractionInterface<V, I>,
+	initialModelView: V | null
+): Readonly<InteractiveModel<V, I>> {
 	// The most valid way to "memoize" the input that I could come up with
-	const [memoizedViewInteractionInterface] = useState<W>(
+	const [memoizedViewInteractionInterface] = useState(
 		viewInteractionInterface
 	);
-	const [memoizedModelView, setModelView] = useState<U | null>(
+	const [memoizedModelView, setModelView] = useState<V | null>(
 		initialModelView
 	);
 	const memoizedInteract = useCallback(
-		(interaction: ModelInteraction<V>) => {
+		(interaction: I) => {
 			memoizedViewInteractionInterface
 				.produceModelView(interaction)
-				.then((newModelView: U) => {
+				.then((newModelView: V) => {
 					setModelView(newModelView);
 				})
 				.catch((error) => {
@@ -74,7 +73,7 @@ export function useInitializedStatefulInteractiveModel<
 		interact: memoizedInteract,
 	};
 
-	return statefulModel as T;
+	return statefulModel;
 }
 
 /**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView},
@@ -83,15 +82,13 @@ export function useInitializedStatefulInteractiveModel<
  * @returns New readonly {@link InteractiveModel} with uninitialized (`null`) {@link ModelView}
  */
 export function useNewStatefulInteractiveModel<
-	T extends InteractiveModel<U, ModelInteraction<V>>,
-	U extends ModelView = ModelView,
-	V = unknown,
-	W extends ViewInteractionInterface<
-		U,
-		ModelInteraction<V>
-	> = ViewInteractionInterface<U, ModelInteraction<V>>
->(viewInteractionInterface: W): Readonly<T> {
-	return useInitializedStatefulInteractiveModel<T>(
+	V extends ModelView,
+	I extends ModelInteraction<U>,
+	U = unknown
+>(
+	viewInteractionInterface: ViewInteractionInterface<V, I>
+): Readonly<InteractiveModel<V, I>> {
+	return useInitializedStatefulInteractiveModel<V, I>(
 		viewInteractionInterface,
 		null
 	);
@@ -103,15 +100,11 @@ export function useNewStatefulInteractiveModel<
  * @returns New readonly {@link InteractiveModel} initialized with `model`'s {@link ModelView}
  */
 export function useTransformedStatefulInteractiveModel<
-	T extends InteractiveModel<U, ModelInteraction<V>>,
-	U extends ModelView = ModelView,
-	V = unknown,
-	W extends ViewInteractionInterface<
-		U,
-		ModelInteraction<V>
-	> = ViewInteractionInterface<U, ModelInteraction<V>>
->(model: StatifiableModel<W>): Readonly<T> {
-	return useInitializedStatefulInteractiveModel<T>(
+	V extends ModelView,
+	I extends ModelInteraction<U>,
+	U = unknown
+>(model: StatifiableModel<V, I>): Readonly<InteractiveModel<V, I>> {
+	return useInitializedStatefulInteractiveModel<V, I>(
 		model.viewInteractionInterface,
 		model.modelView
 	);

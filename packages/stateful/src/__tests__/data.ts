@@ -15,8 +15,8 @@ export type TestViewInteractionInterface = ViewInteractionInterface<
 	TestModelInteraction
 >;
 export type TestStatifiableModel = StatifiableModel<
-	ViewInteractionInterface<TestModelView, TestModelInteraction>,
-	TestModelView
+	TestModelView,
+	TestModelInteraction
 >;
 
 export const testModelView: TestModelView = {
