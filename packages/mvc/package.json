@@ -39,7 +39,9 @@
 		"prepack": "npm run build",
 		"prepublishOnly": "npm test",
 		"test": "jest",
-		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'"
+		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'",
+		"lint:native": "tsc --noEmit",
+		"src-check": "npm run lint:native && npm run test"
 	},
 	"devDependencies": {
 		"@rollup/plugin-typescript": "^12.1.2",

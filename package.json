@@ -10,14 +10,9 @@
 		"packages/components",
 		"packages/stateful"
 	],
-	"config": {
-		"mvc": "mvc",
-		"components": "components",
-		"stateful": "stateful"
-	},
 	"scripts": {
-		"lint:pkg": "eslint packages/$npm_package_config_testflag/src/**/*.{ts,tsx}",
-		"lint": "eslint packages/**/src/**/*.{ts,tsx}"
+		"lint": "eslint packages/**/src/**/*.{ts,tsx,js,jsx,cjs,mjs}",
+		"precommit": "npm run src-check --ws && npm run lint"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.27.0",

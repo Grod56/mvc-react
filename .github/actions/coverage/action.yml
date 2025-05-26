@@ -9,12 +9,16 @@ runs:
     using: "composite"
 
     steps:
-        - name: Install Dependencies
+        - name: Install Package Dependencies
           shell: bash
-          run: npm ci --workspaces=false
+          run: |
+              echo Installing Package Dependencies 
+              npm ci --workspaces=false
           working-directory: ./packages/${{ inputs.package }}
 
         - name: Run Coverage
           shell: bash
-          run: npm run test:cov
+          run: |
+              echo Running Coverage
+              npm run test:cov
           working-directory: ./packages/${{ inputs.package }}

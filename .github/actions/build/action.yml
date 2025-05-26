@@ -9,25 +9,35 @@ runs:
     using: "composite"
 
     steps:
-        - name: Install Workspace Dependencies
+        - name: Install Global Dependencies
           shell: bash
-          run: npm ci --workspaces=false
+          run: |
+              echo Installing Global Dependencies
+              npm ci --workspaces=false
 
         - name: Install Package Dependencies
           shell: bash
-          run: npm ci --workspaces=false
+          run: |
+              echo Installing Package Dependencies 
+              npm ci --workspaces=false
+          working-directory: ./packages/${{ inputs.package }}
+
+        - name: Run Source Check
+          shell: bash
+          run: |
+              echo Running Source Check 
+              npm run src-check
           working-directory: ./packages/${{ inputs.package }}
 
         - name: Run Linter
           shell: bash
-          run: npx eslint "packages/${{ inputs.package }}/src/**/*.{ts,tsx}"
-
-        - name: Run Tests
-          shell: bash
-          run: npm run test
-          working-directory: ./packages/${{ inputs.package }}
+          run: |
+              echo Running Linter
+              npx eslint "packages/${{ inputs.package }}/src/**/*.{ts,tsx,js,jsx,cjs,mjs}"
 
         - name: Run Build
           shell: bash
-          run: npm run build
+          run: |
+              echo Building the package
+              npm run build
           working-directory: ./packages/${{ inputs.package }}
