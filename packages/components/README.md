@@ -19,16 +19,16 @@ take in a single prop `model` which models what the UI displays and how the user
 
 When properly implemented, this framework:
 
--   Makes your components intuitive
--   Allows for greater view flexibility
--   Naturally decouples core/functional component logic from the component view logic,
-    making it simpler to test
--   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
+- Makes your components intuitive
+- Allows for greater view flexibility
+- Naturally decouples core/functional component logic from the component view logic,
+  making it simpler to test
+- Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 💡 Tips:
 
--   Try to make sure your component's `Model` contains _all_ the properties and functionality essential to the component
--   Try to move _all_ `Model` logic away from your component and into the model so that there is a one-to-one correspondance between the `ModelView` and what is rendered on your component; and (if applicable) between the Model's `ModelInteraction`s and the events fired by the component
+- Try to make sure your component's `Model` contains _all_ the properties and functionality essential to the component
+- Try to move _all_ `Model` logic away from your component and into the model so that there is a one-to-one correspondance between the `ModelView` and what is rendered on your component; and (if applicable) between the Model's `ModelInteraction`s and the events fired by the component
 
 ## Documentation
 
@@ -105,8 +105,8 @@ Component that maps a list of models to their respective components. (see [Examp
 
 #### `ModelView` properties
 
--   `componentModels` - List of models, each to be mapped to a `Component`.
--   `Component` - The `ModeledComponent` each component model will be mapped to.
+- `componentModels` - List of models, each to be mapped to a `Component`.
+- `Component` - The `ModeledComponent` each component model will be mapped to.
 
 ### `ComponentPlaceholder`
 
@@ -115,9 +115,9 @@ is not yet defined.
 
 #### `ModelView` properties
 
--   `placeholderedComponentModel` - Model of placeholdered component.
--   `PlaceholderedComponent` - Component the placeholdered model will be mapped to when defined.
--   `PlaceholderComponent` - Placeholder component
+- `placeholderedComponentModel` - Model of placeholdered component.
+- `PlaceholderedComponent` - Component the placeholdered model will be mapped to when defined.
+- `PlaceholderComponent` - Placeholder component
 
 #### Example 4:
 
@@ -143,10 +143,10 @@ Component that renders different components depending on a provided condition.
 
 #### `ModelView` properties
 
--   `condition` - Value that determines which component to render.
--   `components` - A map pairing a condition to its respective component.
--   `FallbackComponent` - Component to render when provided condition does not map to
-    any component, or is invalid.
+- `condition` - Value that determines which component to render.
+- `components` - A map pairing a condition to its respective component.
+- `FallbackComponent` - Component to render when provided condition does not map to
+  any component, or is invalid.
 
 #### Example 5:
 
@@ -189,5 +189,5 @@ const BookRepository = function({ model }) {
 
 ## See Related
 
--   [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
--   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)
+- [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
+- [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)

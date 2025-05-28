@@ -18,10 +18,10 @@ The model's `modelView` is observable and only changes when altered by the model
 
 ## Benefits
 
--   Simplifies `InteractiveModel` state logic
--   Is very lean (only depends on built-in React API)
--   Is React-DOM agnostic (i.e. can be used with React Native, or any other DOM implementation)
--   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
+- Simplifies `InteractiveModel` state logic
+- Is very lean (only depends on built-in React API)
+- Is React-DOM agnostic (i.e. can be used with React Native, or any other DOM implementation)
+- Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 ## Documentation
 
@@ -75,5 +75,5 @@ Transforms provided statifiable model into new stateful `InteractiveModel` with 
 
 ## See Related
 
--   [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
--   [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)
+- [@mvc-react/mvc](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)
+- [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)

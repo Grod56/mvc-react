@@ -26,7 +26,7 @@ runs:
           shell: bash
           run: |
               echo Running Source Check 
-              npm run src-check
+              npm run check:src
           working-directory: ./packages/${{ inputs.package }}
 
         - name: Run Linter
@@ -34,6 +34,12 @@ runs:
           run: |
               echo Running Linter
               npx eslint "packages/${{ inputs.package }}/src/**/*.{ts,tsx,js,jsx,cjs,mjs}"
+
+        - name: Run Format Check
+          shell: bash
+          run: |
+              echo Running Format Check
+              npx prettier --check "packages/${{ inputs.package }}/src/**"
 
         - name: Run Build
           shell: bash

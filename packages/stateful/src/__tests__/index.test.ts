@@ -16,7 +16,7 @@ import {
 describe("useNewStatefulInteractiveModel", () => {
 	it("returns expected model", () => {
 		const renderedHook = renderHook(() =>
-			useNewStatefulInteractiveModel(testViewInteractionInterface)
+			useNewStatefulInteractiveModel(testViewInteractionInterface),
 		);
 		const model = renderedHook.result.current;
 		expect(model).toEqual({
@@ -26,7 +26,7 @@ describe("useNewStatefulInteractiveModel", () => {
 	});
 	it("returns identical model properties on rerender", () => {
 		const renderedHook = renderHook(() =>
-			useNewStatefulInteractiveModel(testViewInteractionInterface)
+			useNewStatefulInteractiveModel(testViewInteractionInterface),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -38,7 +38,7 @@ describe("useNewStatefulInteractiveModel", () => {
 	});
 	it("changes model view to expected value after interaction", async () => {
 		const renderedHook = renderHook(() =>
-			useNewStatefulInteractiveModel(testViewInteractionInterface)
+			useNewStatefulInteractiveModel(testViewInteractionInterface),
 		);
 		const model = renderedHook.result.current;
 		act(() => model.interact({ type: TestModelInteractionType.TEST }));
@@ -57,8 +57,8 @@ describe("useNewStatefulInteractiveModel", () => {
 		const errorMessage = "Nope!";
 		const renderedHook = renderHook(() =>
 			useNewStatefulInteractiveModel(
-				faultyViewInteractionInterface(errorMessage)
-			)
+				faultyViewInteractionInterface(errorMessage),
+			),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -68,7 +68,7 @@ describe("useNewStatefulInteractiveModel", () => {
 		});
 		waitFor(() => {
 			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage)
+				expect.stringContaining(errorMessage),
 			);
 		});
 	});
@@ -78,8 +78,8 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				testViewInteractionInterface,
-				testModelView
-			)
+				testModelView,
+			),
 		);
 		const model = renderedHook.result.current;
 		expect(model).toEqual({
@@ -91,8 +91,8 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				testViewInteractionInterface,
-				testModelView
-			)
+				testModelView,
+			),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -106,8 +106,8 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				testViewInteractionInterface,
-				testModelView
-			)
+				testModelView,
+			),
 		);
 		const model = renderedHook.result.current;
 		act(() => model.interact({ type: TestModelInteractionType.TEST }));
@@ -127,8 +127,8 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
 				faultyViewInteractionInterface(errorMessage),
-				testModelView
-			)
+				testModelView,
+			),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -138,7 +138,7 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		});
 		waitFor(() => {
 			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage)
+				expect.stringContaining(errorMessage),
 			);
 		});
 	});
@@ -146,7 +146,7 @@ describe("useInitializedStatefulInteractiveModel", () => {
 describe("useTransformedStatefulInteractiveModel", () => {
 	it("returns equivalent model", () => {
 		const renderedHook = renderHook(() =>
-			useTransformedStatefulInteractiveModel(testStatifiableModel)
+			useTransformedStatefulInteractiveModel(testStatifiableModel),
 		);
 		const model = renderedHook.result.current;
 		expect(model).toEqual({
@@ -156,7 +156,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 	});
 	it("returns identical model properties on rerender", () => {
 		const renderedHook = renderHook(() =>
-			useTransformedStatefulInteractiveModel(testStatifiableModel)
+			useTransformedStatefulInteractiveModel(testStatifiableModel),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -168,7 +168,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 	});
 	it("changes model view to expected value after interaction", async () => {
 		const renderedHook = renderHook(() =>
-			useTransformedStatefulInteractiveModel(testStatifiableModel)
+			useTransformedStatefulInteractiveModel(testStatifiableModel),
 		);
 		const model = renderedHook.result.current;
 		act(() => model.interact({ type: TestModelInteractionType.TEST }));
@@ -176,7 +176,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			await testStatifiableModel.viewInteractionInterface.produceModelView(
 				{
 					type: TestModelInteractionType.TEST,
-				}
+				},
 			);
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
@@ -189,8 +189,8 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		const errorMessage = "Rejected!";
 		const renderedHook = renderHook(() =>
 			useTransformedStatefulInteractiveModel(
-				faultyTestStatifiableModel(errorMessage)
-			)
+				faultyTestStatifiableModel(errorMessage),
+			),
 		);
 		const model = renderedHook.result.current;
 		act(() => {
@@ -200,7 +200,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 		});
 		waitFor(() => {
 			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage)
+				expect.stringContaining(errorMessage),
 			);
 		});
 	});

@@ -43,7 +43,8 @@
 		"test": "jest",
 		"test:cov": "jest --coverage --coverageReporters='json-summary' --coverageProvider='v8'",
 		"lint:native": "tsc --noEmit",
-		"src-check": "npm run lint:native && npm run test"
+		"format": "prettier --write .",
+		"check:src": "npm run lint:native && npm run test"
 	},
 	"peerDependencies": {
 		"@mvc-react/mvc": "^2.1.1",

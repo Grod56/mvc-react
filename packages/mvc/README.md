@@ -14,10 +14,10 @@ npm install --save-dev @mvc-react/mvc
 
 When properly implemented, this framework:
 
--   Makes your item/unit/module intuitive and easy to understand
--   Naturally abstracts different aspects of your item, making it flexible and scalable
--   Makes the item drastically easier to test
--   Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
+- Makes your item/unit/module intuitive and easy to understand
+- Naturally abstracts different aspects of your item, making it flexible and scalable
+- Makes the item drastically easier to test
+- Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 ## Documentation
 
@@ -120,5 +120,5 @@ Convenience function for constructing a new `ReadonlyModel`
 
 ## See Related
 
--   [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)
--   [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)
+- [@mvc-react/stateful](https://github.com/Grod56/mvc-react/tree/main/packages/stateful#readme)
+- [@mvc-react/components](https://github.com/Grod56/mvc-react/tree/main/packages/components#readme)

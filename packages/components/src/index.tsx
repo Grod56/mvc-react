@@ -7,7 +7,7 @@ import React, { JSX } from "react";
  * after a {@link Model}, and has no children. */
 export interface ModeledVoidComponent<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > {
 	/**
 	 * @param {Object} props
@@ -20,7 +20,7 @@ export interface ModeledVoidComponent<
  * after a {@link Model}, and has children. */
 export interface ModeledContainerComponent<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > {
 	/**
 	 * @param {Object} props
@@ -33,7 +33,7 @@ export interface ModeledContainerComponent<
  * after a {@link Model}. */
 export type ModeledComponent<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > = ModeledVoidComponent<M> | ModeledContainerComponent<M>;
 
 export type GeneralComponent = () => JSX.Element;
@@ -45,7 +45,7 @@ export type GeneralComponent = () => JSX.Element;
 
 export interface ComponentListModelView<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > {
 	/**List of models, each to be mapped to a `Component`.*/
 	componentModels: M[];
@@ -58,13 +58,13 @@ export interface ComponentListModelView<
  * into their respective {@link ModeledComponent}s.*/
 export type ComponentListModel<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > = ReadonlyModel<ComponentListModelView<M>>;
 
 /**Component that maps a list of models to their respective components. */
 export function ComponentList<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 >({ model }: { model: ComponentListModel<M> }) {
 	const { componentModels, Component } = model.modelView;
 	return (
@@ -80,12 +80,12 @@ export function ComponentList<
 
 export type PlaceholderedComponentModel<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > = M | undefined;
 
 export interface ComponentPlaceholderModelView<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > {
 	/**Model of placeholdered component */
 	placeholderedComponentModel: PlaceholderedComponentModel<M>;
@@ -102,7 +102,7 @@ export interface ComponentPlaceholderModelView<
  */
 export type ComponentPlaceholderModel<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 > = ReadonlyModel<ComponentPlaceholderModelView<M>>;
 
 /**
@@ -111,7 +111,7 @@ export type ComponentPlaceholderModel<
  */
 export function ComponentPlaceholder<
 	M extends Model<V>,
-	V extends ModelView = ModelView
+	V extends ModelView = ModelView,
 >({ model }: { model: ComponentPlaceholderModel<M> }) {
 	const {
 		placeholderedComponentModel,

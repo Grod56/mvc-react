@@ -12,7 +12,7 @@ import {
 export interface StatifiableModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
-	U = unknown
+	U = unknown,
 > extends Model<V> {
 	readonly viewInteractionInterface: ViewInteractionInterface<V, I>;
 }
@@ -22,7 +22,7 @@ export interface StatifiableModel<
 export interface ViewInteractionInterface<
 	V extends ModelView,
 	I extends ModelInteraction<T>,
-	T = unknown
+	T = unknown,
 > {
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
@@ -41,17 +41,17 @@ export interface ViewInteractionInterface<
 export function useInitializedStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
-	U = unknown
+	U = unknown,
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
-	initialModelView: V | null
+	initialModelView: V | null,
 ): Readonly<InteractiveModel<V, I>> {
 	// The most valid way to "memoize" the input that I could come up with
 	const [memoizedViewInteractionInterface] = useState(
-		viewInteractionInterface
+		viewInteractionInterface,
 	);
 	const [memoizedModelView, setModelView] = useState<V | null>(
-		initialModelView
+		initialModelView,
 	);
 	const memoizedInteract = useCallback(
 		(interaction: I) => {
@@ -60,11 +60,11 @@ export function useInitializedStatefulInteractiveModel<
 				.then((newModelView: V) => {
 					setModelView(newModelView);
 				})
-				.catch((error) => {
+				.catch(error => {
 					console.error(`Interaction failed: ${String(error)}`);
 				});
 		},
-		[memoizedViewInteractionInterface]
+		[memoizedViewInteractionInterface],
 	);
 
 	// Reminder to self: DO NOT memoize the output model
@@ -84,13 +84,13 @@ export function useInitializedStatefulInteractiveModel<
 export function useNewStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
-	U = unknown
+	U = unknown,
 >(
-	viewInteractionInterface: ViewInteractionInterface<V, I>
+	viewInteractionInterface: ViewInteractionInterface<V, I>,
 ): Readonly<InteractiveModel<V, I>> {
 	return useInitializedStatefulInteractiveModel<V, I>(
 		viewInteractionInterface,
-		null
+		null,
 	);
 }
 
@@ -102,10 +102,10 @@ export function useNewStatefulInteractiveModel<
 export function useTransformedStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
-	U = unknown
+	U = unknown,
 >(model: StatifiableModel<V, I>): Readonly<InteractiveModel<V, I>> {
 	return useInitializedStatefulInteractiveModel<V, I>(
 		model.viewInteractionInterface,
-		model.modelView
+		model.modelView,
 	);
 }

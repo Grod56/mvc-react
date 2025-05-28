@@ -13,7 +13,7 @@ describe("ConditionalComponent", () => {
 
 	beforeAll(() => {
 		const renderedHook = renderHook(() =>
-			useTestData(getComponents(), getFallbackComponent())
+			useTestData(getComponents(), getFallbackComponent()),
 		);
 		const { testModel } = renderedHook.result.current;
 		const { components, FallBackComponent } = testModel.modelView;
@@ -25,7 +25,7 @@ describe("ConditionalComponent", () => {
 
 	it("only renders Component relevant to provided condition", () => {
 		const renderedHook = renderHook(() =>
-			useTestData(getComponents(), getFallbackComponent())
+			useTestData(getComponents(), getFallbackComponent()),
 		);
 		const { setCondition } = renderedHook.result.current;
 
@@ -34,7 +34,7 @@ describe("ConditionalComponent", () => {
 		const rendered = render(
 			<ConditionalComponent
 				model={renderedHook.result.current.testModel}
-			/>
+			/>,
 		);
 
 		const containerElement = rendered.container;
@@ -46,7 +46,7 @@ describe("ConditionalComponent", () => {
 
 	it("only renders fallback component when condition is unmapped", () => {
 		const renderedHook = renderHook(() =>
-			useTestData(getComponents(), getFallbackComponent())
+			useTestData(getComponents(), getFallbackComponent()),
 		);
 		const { setCondition } = renderedHook.result.current;
 
@@ -55,7 +55,7 @@ describe("ConditionalComponent", () => {
 		const rendered = render(
 			<ConditionalComponent
 				model={renderedHook.result.current.testModel}
-			/>
+			/>,
 		);
 
 		const containerElement = rendered.container;

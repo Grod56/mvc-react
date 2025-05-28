@@ -27,12 +27,12 @@ export const testViewInteractionInterface: TestViewInteractionInterface = {
 	produceModelView: jest.fn((interaction: TestModelInteraction) =>
 		Promise.resolve({
 			displayValue: `${interaction.type} has just been executed!`,
-		})
+		}),
 	),
 };
 
 export function faultyViewInteractionInterface(
-	errorMessage: string
+	errorMessage: string,
 ): TestViewInteractionInterface {
 	return {
 		produceModelView: jest.fn((_: TestModelInteraction) => {
@@ -47,7 +47,7 @@ export const testStatifiableModel: TestStatifiableModel = {
 };
 
 export function faultyTestStatifiableModel(
-	errorMessage: string
+	errorMessage: string,
 ): TestStatifiableModel {
 	return {
 		modelView: testModelView,

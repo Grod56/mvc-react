@@ -8,7 +8,7 @@ export type TestConditionalComponentModel =
 
 export function useTestData(
 	components: Map<TestCondition, GeneralComponent>,
-	FallBackComponent: GeneralComponent
+	FallBackComponent: GeneralComponent,
 ) {
 	const [condition, setCondition] = useState<TestCondition>("AB");
 	const testModel: ConditionalComponentModel<TestCondition> = {

@@ -15,7 +15,7 @@ const testComponentModels: TestModel[] = [
 ];
 
 export function getTestModel(
-	Component: ModeledVoidComponent<TestModel>
+	Component: ModeledVoidComponent<TestModel>,
 ): ComponentListModel<TestModel> {
 	const model = {
 		modelView: {

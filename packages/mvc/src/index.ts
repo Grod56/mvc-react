@@ -22,7 +22,7 @@ export interface ReadonlyModel<V extends ModelView> extends Model<V> {
 export interface InteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<T>,
-	T = unknown
+	T = unknown,
 > extends Readonly<Model<V>> {
 	/**Initiates a model interaction.
 	 * @param interaction - Interaction to be executed.
@@ -49,7 +49,7 @@ export interface InputModelInteraction<T, I extends object>
  * @returns New readonly model initialized with `modelView`
  */
 export function newReadonlyModel<V extends object>(
-	modelView: V
+	modelView: V,
 ): ReadonlyModel<V> {
 	return Object.freeze({ modelView });
 }

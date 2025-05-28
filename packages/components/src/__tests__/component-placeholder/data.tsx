@@ -15,7 +15,7 @@ export type TestPlaceholderedComponentModel =
 
 export function useTestData(
 	PlaceholderedComponent: ModeledVoidComponent<TestPlaceholderedComponentModel>,
-	PlaceholderComponent: GeneralComponent
+	PlaceholderComponent: GeneralComponent,
 ) {
 	const [placeholderedComponentModel, setPlaceholderedComponentModel] =
 		useState<TestPlaceholderedComponentModel | undefined>(undefined);

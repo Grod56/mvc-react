@@ -11,7 +11,7 @@ describe("ComponentPlaceholder", () => {
 
 	beforeAll(() => {
 		const renderedHook = renderHook(() =>
-			useTestData(getPlaceholderedComponent(), getPlaceholderComponent())
+			useTestData(getPlaceholderedComponent(), getPlaceholderComponent()),
 		);
 		const { PlaceholderComponent, PlaceholderedComponent } =
 			renderedHook.result.current.testModel.modelView;
@@ -21,12 +21,12 @@ describe("ComponentPlaceholder", () => {
 
 	it("only renders PlaceholderComponent when placeholderedComponentModel is undefined", () => {
 		const renderedHook = renderHook(() =>
-			useTestData(getPlaceholderedComponent(), getPlaceholderComponent())
+			useTestData(getPlaceholderedComponent(), getPlaceholderComponent()),
 		);
 		act(() =>
 			renderedHook.result.current.setPlaceholderedComponentModel(
-				undefined
-			)
+				undefined,
+			),
 		);
 
 		const { testModel } = renderedHook.result.current;
@@ -46,13 +46,13 @@ describe("ComponentPlaceholder", () => {
 			const renderedHook = renderHook(() =>
 				useTestData(
 					getPlaceholderedComponent(),
-					getPlaceholderComponent()
-				)
+					getPlaceholderComponent(),
+				),
 			);
 			act(() =>
 				renderedHook.result.current.setPlaceholderedComponentModel({
 					modelView: { text: "spring" },
-				})
+				}),
 			);
 
 			const { testModel } = renderedHook.result.current;
@@ -63,6 +63,6 @@ describe("ComponentPlaceholder", () => {
 
 			expect(selectedElement).toEqual(containerElement.firstChild);
 			expect(selectedElement).toEqual(containerElement.lastChild);
-		}
+		},
 	);
 });
