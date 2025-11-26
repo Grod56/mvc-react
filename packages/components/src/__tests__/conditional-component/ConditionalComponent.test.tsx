@@ -16,11 +16,11 @@ describe("ConditionalComponent", () => {
 			useTestData(getComponents(), getFallbackComponent()),
 		);
 		const { testModel } = renderedHook.result.current;
-		const { components, FallBackComponent } = testModel.modelView;
+		const { components, FallbackComponent } = testModel.modelView;
 		for (const component of components.values()) {
 			expect(component).not.toHaveBeenCalled();
 		}
-		expect(FallBackComponent).not.toHaveBeenCalled();
+		expect(FallbackComponent).not.toHaveBeenCalled();
 	});
 
 	it("only renders Component relevant to provided condition", () => {
