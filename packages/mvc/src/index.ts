@@ -30,6 +30,16 @@ export interface InteractiveModel<
 	interact(interaction: I): void;
 }
 
+/**Encapsulates {@link Model} whose {@link ModelView} changes according to
+ * provided interactions and is initialized */
+export interface InitializedInteractiveModel<
+	V extends ModelView,
+	I extends ModelInteraction<T>,
+	T = unknown,
+> extends InteractiveModel<V, I> {
+	modelView: Readonly<V>;
+}
+
 /**Encapsulates a singular model interaction/activity
  * which accordingly mutates the {@link Model}'s {@link ModelView}. */
 export interface ModelInteraction<T> {

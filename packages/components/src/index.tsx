@@ -138,7 +138,7 @@ export interface ConditionalComponentModelView<C> {
 	/**Component to render when provided condition
 	 * does not map to any component, or is invalid.
 	 */
-	FallBackComponent: GeneralComponent;
+	FallbackComponent: GeneralComponent;
 }
 
 /**Encapsulates a component that renders different components depending
@@ -155,13 +155,13 @@ export function ConditionalComponent<C>({
 }: {
 	model: ConditionalComponentModel<C>;
 }) {
-	const { condition, components, FallBackComponent } = model.modelView;
+	const { condition, components, FallbackComponent } = model.modelView;
 	return (
 		<>
 			{components.get(condition) ? (
 				components.get(condition)!()
 			) : (
-				<FallBackComponent />
+				<FallbackComponent />
 			)}
 		</>
 	);
