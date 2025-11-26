@@ -5,6 +5,7 @@ import {
 	ModelView,
 	Model,
 	InteractiveModel,
+	InitializedInteractiveModel,
 } from "@mvc-react/mvc";
 
 /** Encapsulates {@link Model} that can be transformed into a stateful {@link InteractiveModel}.
@@ -31,14 +32,7 @@ export interface ViewInteractionInterface<
 	produceModelView(interaction: I): Promise<V>;
 }
 
-/**Constructs stateful {@link InteractiveModel} with observable {@link ModelView},
- * which is based on the provided {@link ViewInteractionInterface} and is initialized
- * with the provided {@link ModelView}.
- * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
- * @param initialModelView - Initial model view for the returned model
- * @returns New readonly {@link InteractiveModel} initialized with `initialModelView`
- * */
-export function useInitializedStatefulInteractiveModel<
+function useStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
 	U = unknown,
@@ -76,6 +70,28 @@ export function useInitializedStatefulInteractiveModel<
 	return statefulModel;
 }
 
+/**Constructs stateful {@link InteractiveModel} with observable {@link ModelView},
+ * which is based on the provided {@link ViewInteractionInterface} and is initialized
+ * with the provided {@link ModelView}.
+ * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
+ * @param initialModelView - Initial model view for the returned model
+ * @returns New readonly {@link InitializedInteractiveModel} initialized with `initialModelView`
+ * */
+export function useInitializedStatefulInteractiveModel<
+	V extends ModelView,
+	I extends ModelInteraction<U>,
+	U = unknown,
+>(
+	viewInteractionInterface: ViewInteractionInterface<V, I>,
+	initialModelView: V,
+): Readonly<InitializedInteractiveModel<V, I>> {
+	// The most valid way to "memoize" the input that I could come up with
+	return useStatefulInteractiveModel<V, I>(
+		viewInteractionInterface,
+		initialModelView,
+	) as Readonly<InitializedInteractiveModel<V, I>>;
+}
+
 /**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView},
  * which is based on the provided {@link ViewInteractionInterface}.
  * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
@@ -88,10 +104,7 @@ export function useNewStatefulInteractiveModel<
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
 ): Readonly<InteractiveModel<V, I>> {
-	return useInitializedStatefulInteractiveModel<V, I>(
-		viewInteractionInterface,
-		null,
-	);
+	return useStatefulInteractiveModel<V, I>(viewInteractionInterface, null);
 }
 
 /**Transforms provided {@link StatifiableModel} into new stateful {@link InteractiveModel}
@@ -104,7 +117,7 @@ export function useTransformedStatefulInteractiveModel<
 	I extends ModelInteraction<U>,
 	U = unknown,
 >(model: StatifiableModel<V, I>): Readonly<InteractiveModel<V, I>> {
-	return useInitializedStatefulInteractiveModel<V, I>(
+	return useStatefulInteractiveModel<V, I>(
 		model.viewInteractionInterface,
 		model.modelView,
 	);
