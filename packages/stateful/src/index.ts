@@ -5,7 +5,7 @@ import {
 	ModelView,
 	Model,
 	InteractiveModel,
-	InitializedInteractiveModel,
+	InitializedModel,
 } from "@mvc-react/mvc";
 
 /** Encapsulates {@link Model} that can be transformed into a stateful {@link InteractiveModel}.
@@ -38,15 +38,16 @@ function useStatefulInteractiveModel<
 	U = unknown,
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
-	initialModelView: V | null,
+	initialModelView?: V | null,
 ): Readonly<InteractiveModel<V, I>> {
 	// The most valid way to "memoize" the input that I could come up with
 	const [memoizedViewInteractionInterface] = useState(
 		viewInteractionInterface,
 	);
-	const [memoizedModelView, setModelView] = useState<V | null>(
-		initialModelView,
-	);
+	const processedInitialModelView = initialModelView ?? null;
+	const [memoizedModelView, setModelView] = useState<
+		typeof processedInitialModelView
+	>(processedInitialModelView);
 	const memoizedInteract = useCallback(
 		(interaction: I) => {
 			memoizedViewInteractionInterface
@@ -84,12 +85,12 @@ export function useInitializedStatefulInteractiveModel<
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
 	initialModelView: V,
-): Readonly<InitializedInteractiveModel<V, I>> {
-	// The most valid way to "memoize" the input that I could come up with
-	return useStatefulInteractiveModel<V, I>(
+) {
+	const model = useStatefulInteractiveModel<V, I>(
 		viewInteractionInterface,
 		initialModelView,
-	) as Readonly<InitializedInteractiveModel<V, I>>;
+	);
+	return model as InitializedModel<typeof model>;
 }
 
 /**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView},
@@ -101,10 +102,8 @@ export function useNewStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
 	U = unknown,
->(
-	viewInteractionInterface: ViewInteractionInterface<V, I>,
-): Readonly<InteractiveModel<V, I>> {
-	return useStatefulInteractiveModel<V, I>(viewInteractionInterface, null);
+>(viewInteractionInterface: ViewInteractionInterface<V, I>) {
+	return useStatefulInteractiveModel<V, I>(viewInteractionInterface);
 }
 
 /**Transforms provided {@link StatifiableModel} into new stateful {@link InteractiveModel}
@@ -116,7 +115,7 @@ export function useTransformedStatefulInteractiveModel<
 	V extends ModelView,
 	I extends ModelInteraction<U>,
 	U = unknown,
->(model: StatifiableModel<V, I>): Readonly<InteractiveModel<V, I>> {
+>(model: StatifiableModel<V, I>) {
 	return useStatefulInteractiveModel<V, I>(
 		model.viewInteractionInterface,
 		model.modelView,

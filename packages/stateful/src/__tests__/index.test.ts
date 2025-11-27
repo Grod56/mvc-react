@@ -82,6 +82,7 @@ describe("useInitializedStatefulInteractiveModel", () => {
 			),
 		);
 		const model = renderedHook.result.current;
+		expect(model.modelView).not.toBeNull();
 		expect(model).toEqual({
 			modelView: testModelView,
 			interact: expect.any(Function),
