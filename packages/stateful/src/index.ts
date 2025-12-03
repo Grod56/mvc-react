@@ -27,9 +27,10 @@ export interface ViewInteractionInterface<
 > {
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
+	 *@param currentModelView - The current model view
 	 *@returns A Promise for the produced model view
 	 */
-	produceModelView(interaction: I): Promise<V>;
+	produceModelView(interaction: I, currentModelView: V | null): Promise<V>;
 }
 
 function useStatefulInteractiveModel<
@@ -51,7 +52,7 @@ function useStatefulInteractiveModel<
 	const memoizedInteract = useCallback(
 		(interaction: I) => {
 			memoizedViewInteractionInterface
-				.produceModelView(interaction)
+				.produceModelView(interaction, memoizedModelView)
 				.then((newModelView: V) => {
 					setModelView(newModelView);
 				})
@@ -59,7 +60,7 @@ function useStatefulInteractiveModel<
 					console.error(`Interaction failed: ${String(error)}`);
 				});
 		},
-		[memoizedViewInteractionInterface],
+		[memoizedViewInteractionInterface, memoizedModelView],
 	);
 
 	// Reminder to self: DO NOT memoize the output model

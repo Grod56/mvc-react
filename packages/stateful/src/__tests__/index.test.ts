@@ -43,9 +43,12 @@ describe("useNewStatefulInteractiveModel", () => {
 		const model = renderedHook.result.current;
 		act(() => model.interact({ type: TestModelInteractionType.TEST }));
 		const expectedModelView =
-			await testViewInteractionInterface.produceModelView({
-				type: TestModelInteractionType.TEST,
-			});
+			await testViewInteractionInterface.produceModelView(
+				{
+					type: TestModelInteractionType.TEST,
+				},
+				testModelView,
+			);
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
 			expect(currentModelView).toEqual(expectedModelView);
@@ -113,9 +116,12 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		const model = renderedHook.result.current;
 		act(() => model.interact({ type: TestModelInteractionType.TEST }));
 		const expectedModelView =
-			await testViewInteractionInterface.produceModelView({
-				type: TestModelInteractionType.TEST,
-			});
+			await testViewInteractionInterface.produceModelView(
+				{
+					type: TestModelInteractionType.TEST,
+				},
+				testModelView,
+			);
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
 			expect(currentModelView).toEqual(expectedModelView);
@@ -178,6 +184,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 				{
 					type: TestModelInteractionType.TEST,
 				},
+				testModelView,
 			);
 		waitFor(() => {
 			const currentModelView = renderedHook.result.current.modelView;
