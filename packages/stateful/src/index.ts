@@ -41,18 +41,15 @@ function useStatefulInteractiveModel<
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
 	initialModelView?: V | null,
 ): Readonly<InteractiveModel<V, I>> {
-	// The most valid way to "memoize" the input that I could come up with
-	const [memoizedViewInteractionInterface] = useState(
-		viewInteractionInterface,
-	);
 	const processedInitialModelView = initialModelView ?? null;
-	const [memoizedModelView, setModelView] = useState<
+	const [statefulModelView, setModelView] = useState<
 		typeof processedInitialModelView
 	>(processedInitialModelView);
+	// TODO: Add tests to factor in this change
 	const memoizedInteract = useCallback(
 		(interaction: I) => {
-			memoizedViewInteractionInterface
-				.produceModelView(interaction, memoizedModelView)
+			viewInteractionInterface
+				.produceModelView(interaction, statefulModelView)
 				.then((newModelView: V) => {
 					setModelView(newModelView);
 				})
@@ -60,12 +57,12 @@ function useStatefulInteractiveModel<
 					console.error(`Interaction failed: ${String(error)}`);
 				});
 		},
-		[memoizedViewInteractionInterface, memoizedModelView],
+		[statefulModelView, viewInteractionInterface],
 	);
 
 	// Reminder to self: DO NOT memoize the output model
 	const statefulModel = {
-		modelView: memoizedModelView,
+		modelView: statefulModelView,
 		interact: memoizedInteract,
 	};
 
