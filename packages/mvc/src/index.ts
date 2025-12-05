@@ -37,6 +37,15 @@ export type InitializedModel<M extends Model<ModelView>> = {
 	[P in keyof M]: NonNullable<M[P]>;
 };
 
+/**Utility type representing an initialized {@link InteractiveModel}
+ * (i.e. an interactive model with a non-null `modelView`).
+ */
+export type InitializedInteractiveModel<
+	V extends ModelView,
+	I extends ModelInteraction<T>,
+	T = unknown,
+> = InitializedModel<InteractiveModel<V, I, T>>;
+
 /**Encapsulates a singular model interaction/activity
  * which accordingly mutates the {@link Model}'s {@link ModelView}. */
 export interface ModelInteraction<T> {
