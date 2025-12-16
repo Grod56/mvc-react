@@ -47,14 +47,15 @@ function useStatefulInteractiveModel<
 	>(processedInitialModelView);
 	// TODO: Add tests to factor in this change
 	const memoizedInteract = useCallback(
-		(interaction: I) => {
-			viewInteractionInterface
+		async (interaction: I) => {
+			await viewInteractionInterface
 				.produceModelView(interaction, statefulModelView)
 				.then((newModelView: V) => {
 					setModelView(newModelView);
 				})
 				.catch(error => {
 					console.error(`Interaction failed: ${String(error)}`);
+					return Promise.reject(error);
 				});
 		},
 		[statefulModelView, viewInteractionInterface],

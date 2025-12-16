@@ -41,7 +41,9 @@ describe("useNewStatefulInteractiveModel", () => {
 			useNewStatefulInteractiveModel(testViewInteractionInterface),
 		);
 		const model = renderedHook.result.current;
-		act(() => model.interact({ type: TestModelInteractionType.TEST }));
+		await act(() =>
+			model.interact({ type: TestModelInteractionType.TEST }),
+		);
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView(
 				{
@@ -55,8 +57,6 @@ describe("useNewStatefulInteractiveModel", () => {
 		});
 	});
 	it("reports error when interaction fails", () => {
-		const consoleErrorSpy = jest.spyOn(console, "error");
-		consoleErrorSpy.mockImplementation();
 		const errorMessage = "Nope!";
 		const renderedHook = renderHook(() =>
 			useNewStatefulInteractiveModel(
@@ -64,16 +64,13 @@ describe("useNewStatefulInteractiveModel", () => {
 			),
 		);
 		const model = renderedHook.result.current;
-		act(() => {
-			model.interact({
-				type: TestModelInteractionType.TEST,
-			});
-		});
-		waitFor(() => {
-			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage),
-			);
-		});
+		expect(
+			act(() =>
+				model.interact({
+					type: TestModelInteractionType.TEST,
+				}),
+			),
+		).rejects.toBe(errorMessage);
 	});
 });
 describe("useInitializedStatefulInteractiveModel", () => {
@@ -114,7 +111,9 @@ describe("useInitializedStatefulInteractiveModel", () => {
 			),
 		);
 		const model = renderedHook.result.current;
-		act(() => model.interact({ type: TestModelInteractionType.TEST }));
+		await act(() =>
+			model.interact({ type: TestModelInteractionType.TEST }),
+		);
 		const expectedModelView =
 			await testViewInteractionInterface.produceModelView(
 				{
@@ -128,8 +127,6 @@ describe("useInitializedStatefulInteractiveModel", () => {
 		});
 	});
 	it("reports error when an interaction fails", () => {
-		const consoleErrorSpy = jest.spyOn(console, "error");
-		consoleErrorSpy.mockImplementation();
 		const errorMessage = "Nada";
 		const renderedHook = renderHook(() =>
 			useInitializedStatefulInteractiveModel(
@@ -138,16 +135,13 @@ describe("useInitializedStatefulInteractiveModel", () => {
 			),
 		);
 		const model = renderedHook.result.current;
-		act(() => {
-			model.interact({
-				type: TestModelInteractionType.TEST,
-			});
-		});
-		waitFor(() => {
-			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage),
-			);
-		});
+		expect(
+			act(() =>
+				model.interact({
+					type: TestModelInteractionType.TEST,
+				}),
+			),
+		).rejects.toBe(errorMessage);
 	});
 });
 describe("useTransformedStatefulInteractiveModel", () => {
@@ -178,7 +172,9 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			useTransformedStatefulInteractiveModel(testStatifiableModel),
 		);
 		const model = renderedHook.result.current;
-		act(() => model.interact({ type: TestModelInteractionType.TEST }));
+		await act(() =>
+			model.interact({ type: TestModelInteractionType.TEST }),
+		);
 		const expectedModelView =
 			await testStatifiableModel.viewInteractionInterface.produceModelView(
 				{
@@ -191,9 +187,7 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			expect(currentModelView).toEqual(expectedModelView);
 		});
 	});
-	it("reports error when an interaction fails", () => {
-		const consoleErrorSpy = jest.spyOn(console, "error");
-		consoleErrorSpy.mockImplementation();
+	it("reports error when an interaction fails", async () => {
 		const errorMessage = "Rejected!";
 		const renderedHook = renderHook(() =>
 			useTransformedStatefulInteractiveModel(
@@ -201,15 +195,12 @@ describe("useTransformedStatefulInteractiveModel", () => {
 			),
 		);
 		const model = renderedHook.result.current;
-		act(() => {
-			model.interact({
-				type: TestModelInteractionType.TEST,
-			});
-		});
-		waitFor(() => {
-			expect(consoleErrorSpy.mock.calls[0][0]).toEqual(
-				expect.stringContaining(errorMessage),
-			);
-		});
+		expect(
+			act(() =>
+				model.interact({
+					type: TestModelInteractionType.TEST,
+				}),
+			),
+		).rejects.toBe(errorMessage);
 	});
 });

@@ -49,7 +49,7 @@
 		"check:src": "npm run lint:native && npm run test"
 	},
 	"peerDependencies": {
-		"@mvc-react/mvc": "^2.1.1",
+		"@mvc-react/mvc": "latest",
 		"react": "^19.1.0"
 	},
 	"devDependencies": {
