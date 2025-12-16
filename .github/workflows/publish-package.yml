@@ -52,7 +52,7 @@ jobs:
                   TYPE=${{ inputs.type }}
                   PACKAGE=${{ inputs.package }}
                   echo "Applying $TYPE version update to '$PACKAGE'"
-                  npm version $TYPE
+                  npm version $TYPE --workspacess=false
 
             - name: Post-version-update ci ## For tests, apparently
               run: npm ci --workspaces=false
