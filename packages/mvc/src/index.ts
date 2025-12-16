@@ -27,7 +27,7 @@ export interface InteractiveModel<
 	/**Initiates a model interaction.
 	 * @param interaction - Interaction to be executed.
 	 */
-	interact(interaction: I): void;
+	interact(interaction: I): Promise<void>;
 }
 
 /**Utility type converting a {@link Model} into an initialized model
