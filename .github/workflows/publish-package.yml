@@ -21,6 +21,7 @@ on:
                     - major
 
 permissions:
+    id-token: write
     contents: write
 
 jobs:
@@ -59,8 +60,6 @@ jobs:
 
             - name: Publish to npm
               run: npm publish --access public --workspaces=false
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Commit and push version update
               run: |
