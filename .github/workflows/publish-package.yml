@@ -58,6 +58,9 @@ jobs:
             - name: Post-version-update ci ## For tests, apparently
               run: npm ci --workspaces=false
 
+            - name: Update npm ## For OIDC
+              run: npm install -g npm@latest
+
             - name: Publish to npm
               run: npm publish --access public --workspaces=false
 
