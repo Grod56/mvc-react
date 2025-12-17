@@ -5,7 +5,7 @@ import {
 	ModelView,
 	Model,
 	InteractiveModel,
-	InitializedModel,
+	InitializedInteractiveModel,
 } from "@mvc-react/mvc";
 
 /** Encapsulates {@link Model} that can be transformed into a stateful {@link InteractiveModel}.
@@ -70,9 +70,9 @@ function useStatefulInteractiveModel<
 	return statefulModel;
 }
 
-/**Constructs stateful {@link InteractiveModel} with observable {@link ModelView},
- * which is based on the provided {@link ViewInteractionInterface} and is initialized
- * with the provided {@link ModelView}.
+/**Constructs stateful {@link InteractiveModel} with observable {@link ModelView} and
+ * asynchronous `interact` function, which is based on the provided
+ * {@link ViewInteractionInterface} and is initialized with the provided {@link ModelView}.
  * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
  * @param initialModelView - Initial model view for the returned model
  * @returns New readonly {@link InitializedInteractiveModel} initialized with `initialModelView`
@@ -89,11 +89,11 @@ export function useInitializedStatefulInteractiveModel<
 		viewInteractionInterface,
 		initialModelView,
 	);
-	return model as InitializedModel<typeof model>;
+	return model as InitializedInteractiveModel<V, I>;
 }
 
-/**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView},
- * which is based on the provided {@link ViewInteractionInterface}.
+/**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView} and
+ * asynchronous `interact` function, which is based on the provided {@link ViewInteractionInterface}
  * @param viewInteractionInterface - Interface which will determine how the model view mutates according to the provided interactions
  * @returns New readonly {@link InteractiveModel} with uninitialized (`null`) {@link ModelView}
  */
@@ -106,7 +106,7 @@ export function useNewStatefulInteractiveModel<
 }
 
 /**Transforms provided {@link StatifiableModel} into new stateful {@link InteractiveModel}
- * with observable {@link ModelView}.
+ * with observable {@link ModelView} and asynchronous `interact` function.
  * @param model - Model to be transformed
  * @returns New readonly {@link InteractiveModel} initialized with `model`'s {@link ModelView}
  */

@@ -63,15 +63,15 @@ const interface: ViewInteractionInterface<
 
 ### `useInitializedStatefulInteractiveModel`
 
-Constructs stateful `InteractiveModel` with observable `modelView`, which is based on the provided `viewInteractionInterface` and is initialized with provided initialModelView.
+Constructs stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function, which is based on the provided `viewInteractionInterface` and is initialized with provided initialModelView.
 
 ### `useNewStatefulInteractiveModel`
 
-Constructs stateful `InteractiveModel` with observable `modelView`, which is based on the provided `viewInteractionInterface`.
+Constructs stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function, which is based on the provided `viewInteractionInterface`.
 
 ### `useTransformedStatefulInteractiveModel`
 
-Transforms provided statifiable model into new stateful `InteractiveModel` with observable `modelView`.
+Transforms provided statifiable model into new stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function.
 
 ## See Related
 
