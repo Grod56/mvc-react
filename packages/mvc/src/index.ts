@@ -27,7 +27,7 @@ export interface InteractiveModel<
 	/**Initiates a model interaction.
 	 * @param interaction - Interaction to be executed.
 	 */
-	interact(interaction: I): Promise<void>;
+	interact(interaction: I): void | Promise<void>;
 }
 
 /**Utility type converting a {@link Model} into an initialized model
@@ -54,8 +54,10 @@ export interface ModelInteraction<T> {
 }
 
 /**{@link ModelInteraction} with input data */
-export interface InputModelInteraction<T, I extends object>
-	extends ModelInteraction<T> {
+export interface InputModelInteraction<
+	T,
+	I extends object,
+> extends ModelInteraction<T> {
 	/**The interaction's corresponding input data */
 	readonly input: I;
 }

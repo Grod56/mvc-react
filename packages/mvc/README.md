@@ -90,7 +90,7 @@ class Calculator implements CalculatorModel {
    get modelView() {
       return this._modelView;
    }
-   async interact(interaction: CalculatorInteraction) {
+   interact(interaction: CalculatorInteraction) {
       switch (interaction.type) {
          case "add": {
             const { x, y } = interaction.input!;
@@ -110,7 +110,7 @@ class Calculator implements CalculatorModel {
 ```ts
 // Result
 const calculator = new Calculator();
-await calculator.interact({ type: "add", input: { x: 2, y: 3 } });
+calculator.interact({ type: "add", input: { x: 2, y: 3 } });
 console.log(calculator.modelView); // { display: 5 }
 ```
 
