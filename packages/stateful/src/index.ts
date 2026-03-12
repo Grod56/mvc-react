@@ -40,7 +40,7 @@ function useStatefulInteractiveModel<
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
 	initialModelView?: V | null,
-): Readonly<InteractiveModel<V, I>> {
+) {
 	const processedInitialModelView = initialModelView ?? null;
 	const [statefulModelView, setModelView] = useState<
 		typeof processedInitialModelView
@@ -65,7 +65,7 @@ function useStatefulInteractiveModel<
 	const statefulModel = {
 		modelView: statefulModelView,
 		interact: memoizedInteract,
-	};
+	} satisfies Readonly<InteractiveModel<V, I>>;
 
 	return statefulModel;
 }
