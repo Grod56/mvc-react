@@ -3,11 +3,12 @@ on:
     push:
         paths:
             - "packages/components/**"
-        branches: [main]
+        branches:
+            - "**"
     pull_request:
         paths:
             - "packages/components/**"
-        branches: [main]
+        branches: ["main"]
     workflow_call:
 
 jobs:

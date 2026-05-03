@@ -1,4 +1,5 @@
 name: "build action"
+description: "performs source code tests and source build"
 
 inputs:
     package:

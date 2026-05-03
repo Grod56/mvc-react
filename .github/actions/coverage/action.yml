@@ -1,4 +1,5 @@
 name: "coverage action"
+description: "performs source code tests with coverage"
 
 inputs:
     package:
