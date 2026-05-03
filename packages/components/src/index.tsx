@@ -13,7 +13,7 @@ export interface ModeledVoidComponent<
 	 * @param {Object} props
 	 * @param {M} props.model - The Model the component is patterned after
 	 */
-	({ model }: { model: M }): JSX.Element | Promise<JSX.Element>;
+	({ model }: { model: M }): JSX.Element | Promise<React.ReactNode>;
 }
 
 /**Encapsulates a functional react component which is patterned
@@ -32,7 +32,7 @@ export interface ModeledContainerComponent<
 	}: {
 		model: M;
 		children: React.ReactNode;
-	}): JSX.Element | Promise<JSX.Element>;
+	}): JSX.Element | Promise<React.ReactNode>;
 }
 
 /**Encapsulates a functional react component which is patterned

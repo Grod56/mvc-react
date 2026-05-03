@@ -1,6 +1,6 @@
 # mvc-react/components
 
-[![build](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/components/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-coverage.yml) [![npm](https://img.shields.io/npm/v/%40mvc-react%2Fcomponents)](https://www.npmjs.com/package/@mvc-react/components)
+[![build](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml/badge.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-build.yml) [![coverage](https://raw.githubusercontent.com/Grod56/mvc-react/main/badges/packages/components/coverage-total.svg)](https://github.com/Grod56/mvc-react/actions/workflows/components-coverage.yml) [![npm](https://img.shields.io/npm/v/%40mvc-react%2Fcomponents)](https://www.npmjs.com/package/@mvc-react/components) [![NPM Downloads](https://img.shields.io/npm/d18m/%40mvc-react%2Fcomponents)](https://www.npmjs.com/package/@mvc-react/components)
 
 Framework for developing MVC-based React components. It is based on `@mvc-react/mvc` (see more [here](https://github.com/Grod56/mvc-react/tree/main/packages/mvc#readme)).
 
@@ -56,8 +56,7 @@ const Book: ModeledVoidComponent<BookModel> = function ({ model }) {
 
 ```tsx
 const BookRepository = function({ model }) {
-   const { bookModels } = model.modelView;
-   const { interact } = model.interact;
+   const { modelView: { bookModels }, interact } = model;
 
    return (
       <>
@@ -152,8 +151,7 @@ Component that renders different components depending on a provided condition.
 
 ```tsx
 const BookRepository = function({ model }) {
-   const { bookModels, condition } = model.modelView;
-   const { interact } = model.interact;
+   const { modelView: { bookModels, condition }, interact } = model
 
    const SuccessComponent = () => (
       <div className='books-container'>
