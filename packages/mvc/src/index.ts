@@ -6,7 +6,7 @@ export interface Model<V extends ModelView> {
 }
 
 /**Encapsulates what a client sees/the current 'state' of a {@link Model}. */
-export type ModelView = object;
+export type ModelView = Record<string, unknown>;
 
 //------------------------------------------------------------
 
@@ -34,7 +34,7 @@ export interface InteractiveModel<
  * (i.e. a model with a non-null `modelView`)
  */
 export type InitializedModel<M extends Model<ModelView>> = {
-	[P in keyof M]: NonNullable<M[P]>;
+	[P in keyof M]: P extends "modelView" ? NonNullable<M[P]> : M[P];
 };
 
 /**Utility type representing an initialized {@link InteractiveModel}
@@ -54,10 +54,7 @@ export interface ModelInteraction<T> {
 }
 
 /**{@link ModelInteraction} with input data */
-export interface InputModelInteraction<
-	T,
-	I extends object,
-> extends ModelInteraction<T> {
+export interface InputModelInteraction<T, I> extends ModelInteraction<T> {
 	/**The interaction's corresponding input data */
 	readonly input: I;
 }
@@ -66,7 +63,7 @@ export interface InputModelInteraction<
  * @param modelView - Model view of model to be constructed
  * @returns New readonly model initialized with `modelView`
  */
-export function newReadonlyModel<V extends object>(
+export function newReadonlyModel<V extends ModelView>(
 	modelView: V,
 ): ReadonlyModel<V> {
 	return Object.freeze({ modelView });
