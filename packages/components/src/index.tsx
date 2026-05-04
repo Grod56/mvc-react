@@ -13,7 +13,7 @@ export interface ModeledVoidComponent<
 	 * @param {Object} props
 	 * @param {M} props.model - The Model the component is patterned after
 	 */
-	({ model }: { model: M }): JSX.Element | Promise<React.ReactNode>;
+	({ model }: { model: M }): JSX.Element | Promise<JSX.Element>;
 }
 
 /**Encapsulates a functional react component which is patterned
@@ -32,7 +32,7 @@ export interface ModeledContainerComponent<
 	}: {
 		model: M;
 		children: React.ReactNode;
-	}): JSX.Element | Promise<React.ReactNode>;
+	}): JSX.Element | Promise<JSX.Element>;
 }
 
 /**Encapsulates a functional react component which is patterned
@@ -49,16 +49,16 @@ export type GeneralComponent = () => JSX.Element;
 
 // ComponentList ---------------------------------------------------------------------------
 
-export interface ComponentListModelView<
+export type ComponentListModelView<
 	M extends Model<V>,
 	V extends ModelView = ModelView,
-> {
+> = {
 	/**List of models, each to be mapped to a `Component`.*/
 	componentModels: M[];
 
 	/**The {@link ModeledComponent} each component model will be mapped to. */
 	Component: ModeledVoidComponent<M>;
-}
+};
 
 /**Encapsulates a component that unravels a list of {@link Model}s
  * into their respective {@link ModeledComponent}s.*/
@@ -89,10 +89,10 @@ export type PlaceholderedComponentModel<
 	V extends ModelView = ModelView,
 > = M | undefined;
 
-export interface ComponentPlaceholderModelView<
+export type ComponentPlaceholderModelView<
 	M extends Model<V>,
 	V extends ModelView = ModelView,
-> {
+> = {
 	/**Model of placeholdered component */
 	placeholderedComponentModel: PlaceholderedComponentModel<M>;
 
@@ -101,7 +101,7 @@ export interface ComponentPlaceholderModelView<
 
 	/**Placeholder component */
 	PlaceholderComponent: GeneralComponent;
-}
+};
 
 /**Encapsulates a component that renders an alternative component in place
  * of a {@link ModeledComponent} whose model is not yet defined.
@@ -134,7 +134,7 @@ export function ComponentPlaceholder<
 
 // ConditionalComponent ------------------------------------------------------------------
 
-export interface ConditionalComponentModelView<C> {
+export type ConditionalComponentModelView<C> = {
 	/**Value that determines which component to render. */
 	condition: C;
 
@@ -145,7 +145,7 @@ export interface ConditionalComponentModelView<C> {
 	 * does not map to any component, or is invalid.
 	 */
 	FallbackComponent: GeneralComponent;
-}
+};
 
 /**Encapsulates a component that renders different components depending
  * on a provided condition.

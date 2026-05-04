@@ -27,10 +27,18 @@ export interface ViewInteractionInterface<
 > {
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
+	 *@returns A Promise for the produced model view
+	 */
+	produceModelView(interaction: I): Promise<V>;
+	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
+	 *@param interaction - The interaction to be executed
 	 *@param currentModelView - The current model view
 	 *@returns A Promise for the produced model view
 	 */
-	produceModelView(interaction: I, currentModelView: V | null): Promise<V>;
+	produceModelView(
+		interaction: I,
+		currentModelView: Model<V>["modelView"],
+	): Promise<V>;
 }
 
 function useStatefulInteractiveModel<
@@ -39,18 +47,18 @@ function useStatefulInteractiveModel<
 	U = unknown,
 >(
 	viewInteractionInterface: ViewInteractionInterface<V, I>,
-	initialModelView?: V | null,
+	initialModelView?: Model<V>["modelView"],
 ) {
 	const processedInitialModelView = initialModelView ?? null;
-	const [statefulModelView, setModelView] = useState<
-		typeof processedInitialModelView
-	>(processedInitialModelView);
+	const [statefulModelView, setModelView] = useState(
+		processedInitialModelView,
+	);
 	// TODO: Add tests to factor in this change
 	const memoizedInteract = useCallback(
 		async (interaction: I) => {
 			await viewInteractionInterface
 				.produceModelView(interaction, statefulModelView)
-				.then((newModelView: V) => {
+				.then(newModelView => {
 					setModelView(newModelView);
 				})
 				.catch(error => {
@@ -89,7 +97,7 @@ export function useInitializedStatefulInteractiveModel<
 		viewInteractionInterface,
 		initialModelView,
 	);
-	return model as InitializedInteractiveModel<V, I>;
+	return model as InitializedInteractiveModel<V, I>; // TODO: Future fix
 }
 
 /**Constructs new stateful {@link InteractiveModel} with observable {@link ModelView} and
