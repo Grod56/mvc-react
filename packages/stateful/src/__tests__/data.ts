@@ -1,9 +1,9 @@
 import { ModelInteraction } from "@mvc-react/mvc";
 import { ViewInteractionInterface, StatifiableModel } from "..";
 
-export interface TestModelView {
+export type TestModelView = {
 	displayValue: string;
-}
+};
 
 export enum TestModelInteractionType {
 	TEST,
