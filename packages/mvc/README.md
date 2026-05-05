@@ -31,7 +31,7 @@ The `Model` type encapsulates the essence of any item that can be viewed or inte
 import { Model } from @mvc-react/mvc;
 
 // Our custom ModelView
-interface BookView {
+type BookView = {
    title: string;
    author: string;
    isbn: string;
@@ -65,7 +65,7 @@ A `ModelInteraction` basically comes in two forms: as a simple `ModelInteraction
 import { InteractiveModel, Model, InputModelInteraction } from @mvc-react/mvc;
 
 // Our custom ModelView definition
-interface CalculatorView {
+type CalculatorView = {
    display: number;
 }
 
@@ -84,7 +84,7 @@ type CalculatorModel = InteractiveModel<
 // Implemented
 class Calculator implements CalculatorModel {
 
-   private _modelView: {
+   private _modelView = {
       display: 0,
    }
    get modelView() {
