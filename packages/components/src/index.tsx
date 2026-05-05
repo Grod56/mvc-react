@@ -124,6 +124,7 @@ export function ComponentPlaceholder<
 		PlaceholderedComponent,
 		PlaceholderComponent,
 	} = model.modelView;
+
 	return placeholderedComponentModel ? (
 		<PlaceholderedComponent model={placeholderedComponentModel} />
 	) : (
