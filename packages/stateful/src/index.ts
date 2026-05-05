@@ -29,7 +29,11 @@ export interface ViewInteractionInterface<
 	 *@param interaction - The interaction to be executed
 	 *@returns A Promise for the produced model view
 	 */
-	produceModelView(interaction: I): Promise<V>;
+	produceModelView(
+		interaction: I,
+		currentModelView?: Model<V>["modelView"]
+	): Promise<V>;
+	
 	/**Produces a {@link ModelView} according to the provided {@link ModelInteraction}.
 	 *@param interaction - The interaction to be executed
 	 *@param currentModelView - The current model view
