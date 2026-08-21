@@ -20,14 +20,10 @@ The model's `modelView` is observable and only changes when altered by the model
 
 - Simplifies `InteractiveModel` state logic
 - Is very lean (only depends on built-in React API)
-- Is React-DOM agnostic (i.e. can be used with React Native, or any other DOM implementation)
+- Is platform agnostic (i.e. can be used with React DOM, React Native, or any other environment)
 - Confers the benefits of [other packages](#see-related) within the `@mvc-react` ecosystem when integrated with them.
 
 ## Documentation
-
-### `StatifiableModel`
-
-Represents a `Model` that can be transformed into a stateful `InteractiveModel`. It consists of an additional `ViewInteractionInterface` object whose function is similar to that of a Redux [reducer](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers#writing-reducers).
 
 ### `ViewInteractionInterface`
 
@@ -59,19 +55,38 @@ const interface: ViewInteractionInterface<
 }
 ```
 
+### `StatifiableModel`
+
+Represents a `Model` that can be transformed into a stateful `InteractiveModel`. It consists of an additional `ViewInteractionInterface` object whose function is similar to that of a Redux [reducer](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers#writing-reducers).
+
 ## API
 
 ### `useInitializedStatefulInteractiveModel`
 
-Constructs stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function, which is based on the provided `viewInteractionInterface` and is initialized with provided initialModelView.
+Constructs stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function, which is based on the provided `viewInteractionInterface` and is initialized with provided `initialModelView`.
+
+#### Usage
+```typescript
+const { modelView, interact } = useInitializedStatefulInteractiveModel(yourViewInteractionInterface, yourInitialModelView)
+```
 
 ### `useNewStatefulInteractiveModel`
 
 Constructs stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function, which is based on the provided `viewInteractionInterface`.
 
+#### Usage
+```typescript
+const { modelView, interact } = useNewStatefulInteractiveModel(yourViewInteractionInterface)
+```
+
 ### `useTransformedStatefulInteractiveModel`
 
 Transforms provided statifiable model into new stateful `InteractiveModel` with observable `modelView` and asynchronous `interact` function.
+
+#### Usage
+```typescript
+const { modelView, interact } = useTransformedStatefulInteractiveModel(yourStatifiableModel)
+```
 
 ## See Related
 
