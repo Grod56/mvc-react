@@ -60,20 +60,27 @@ function useStatefulInteractiveModel<
 	// TODO: Add tests to factor in this change
 	const memoizedInteract = useCallback(
 		async (interaction: I) => {
-			await viewInteractionInterface
-				.produceModelView(interaction, statefulModelView)
-				.then(newModelView => {
-					setModelView(newModelView);
-				})
-				.catch(error => {
-					console.error(`Interaction failed: ${String(error)}`);
-					return Promise.reject(error);
+			try {
+				// Address this workaround in the future
+				let nextModelViewPromise: Promise<typeof statefulModelView> =
+					Promise.resolve(null);
+				setModelView(currentModelView => {
+					nextModelViewPromise =
+						viewInteractionInterface.produceModelView(
+							interaction,
+							currentModelView,
+						);
+					return currentModelView; // Forcing a bailout
 				});
+				setModelView(await nextModelViewPromise);
+			} catch (error) {
+				console.error(`Interaction failed: ${String(error)}`);
+				throw error;
+			}
 		},
-		[statefulModelView, viewInteractionInterface],
+		[viewInteractionInterface],
 	);
 
-	// Reminder to self: DO NOT memoize the output model
 	const statefulModel = {
 		modelView: statefulModelView,
 		interact: memoizedInteract,
