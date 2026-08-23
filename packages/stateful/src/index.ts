@@ -62,11 +62,12 @@ function useStatefulInteractiveModel<
 		async (interaction: I) => {
 			try {
 				// Address this workaround in the future
-				const { promise, resolve } = Promise.withResolvers<V>();
+				const { promise, resolve, reject } = Promise.withResolvers<V>();
 				setModelView(currentModelView => {
 					viewInteractionInterface
 						.produceModelView(interaction, currentModelView)
-						.then(modelView => resolve(modelView));
+						.then(modelView => resolve(modelView))
+						.catch(error => reject(error));
 					return currentModelView; // Forcing a bailout
 				});
 				setModelView(await promise);
