@@ -74,7 +74,8 @@ const BookRepository = function({ model }) {
 } as ModeledVoidComponent<BookRepositoryModel>
 ```
 
-### `ModeledContainerComponent`
+### ~~`ModeledContainerComponent`~~
+_(**deprecated**: use the new `ModeledComponent` which provides the same features)_
 
 Encapsulates a functional react component which is patterned after a `Model`, and has children.
 

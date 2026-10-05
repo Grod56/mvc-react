@@ -41,18 +41,13 @@ export type ModeledVoidComponent<
 >;
 
 /**Encapsulates a functional React component which is patterned
- * after a {@link Model}, and has children. */
+ * after a {@link Model}, and has children.
+ * @deprecated use {@link ModeledComponent}
+ * */
 export type ModeledContainerComponent<
 	M extends Model<V>,
 	V extends ModelView = ModelView,
-> = {
-	({
-		model,
-		children,
-	}: Required<Parameters<ModeledComponent<M, V>>[0]>): ReturnType<
-		ModeledComponent<M, V>
-	>;
-};
+> = ModeledComponent<M, V>;
 
 /**Encapsulates a functional React component which is patterned
  * after a {@link Model}, and is stylable */
