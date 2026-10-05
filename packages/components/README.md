@@ -93,6 +93,44 @@ const SiteSection = function ({ model, children }) {
 } as ModeledContainerComponent<SiteSectionModel>;
 ```
 
+### `StyledModeledComponent`
+
+Encapsulates a functional react component which is patterned after a `Model`, and is stylable.
+
+#### Example 4:
+
+```tsx
+const SiteSection = function ({ model, children, className }) {
+	const { sectionTitle } = model.modelView;
+
+	return (
+		<section className={`site-section ${className ?? ""}`}>
+			<h2 className="section-title">{sectionTitle}</h2>
+			{children}
+		</section>
+	);
+} as StyledModeledComponent<SiteSectionModel>;
+```
+
+### `ModeledComponentWithRef`
+
+Encapsulates a functional react component which is patterned after a `Model`, and is manipulable with a ref.
+
+#### Example 4:
+
+```tsx
+const SiteSection = function ({ model, children, ref }) {
+	const { sectionTitle } = model.modelView;
+
+	return (
+		<section className="site-section" ref={ref}>
+			<h2 className="section-title">{sectionTitle}</h2>
+			{children}
+		</section>
+	);
+} as StyledModeledComponent<SiteSectionModel>;
+```
+
 ## Utility components
 
 The package also comes with a couple of general purpose `ModeledComponents` which fulfil common
