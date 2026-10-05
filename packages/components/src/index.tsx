@@ -1,46 +1,90 @@
-import { Model, ModelView, ReadonlyModel } from "@mvc-react/mvc";
-import React, { JSX } from "react";
+import type { Model, ModelView, ReadonlyModel } from "@mvc-react/mvc";
+import type { CSSProperties, JSX, Ref } from "react";
+import React from "react";
+
 // Meta
 //__________________________________________________________________________________________
 
-/**Encapsulates a functional react component which is patterned
- * after a {@link Model}, and has no children. */
-export interface ModeledVoidComponent<
-	M extends Model<V>,
-	V extends ModelView = ModelView,
-> {
-	/**
-	 * @param {Object} props
-	 * @param {M} props.model - The Model the component is patterned after
-	 */
-	({ model }: { model: M }): JSX.Element | Promise<JSX.Element>;
-}
-
-/**Encapsulates a functional react component which is patterned
- * after a {@link Model}, and has children. */
-export interface ModeledContainerComponent<
-	M extends Model<V>,
-	V extends ModelView = ModelView,
-> {
-	/**
-	 * @param {Object} props
-	 * @param {M} props.model - The Model the component is patterned after
-	 * @param children - The component's children */
-	({
-		model,
-		children,
-	}: {
-		model: M;
-		children: React.ReactNode;
-	}): JSX.Element | Promise<JSX.Element>;
-}
-
-/**Encapsulates a functional react component which is patterned
+/**Encapsulates a functional React component which is patterned
  * after a {@link Model}. */
 export type ModeledComponent<
 	M extends Model<V>,
 	V extends ModelView = ModelView,
-> = ModeledVoidComponent<M> | ModeledContainerComponent<M>;
+> = {
+	/**
+	 * @param {Object} props
+	 */
+	({
+		model,
+		children,
+	}: {
+		/**
+		 *  @property The {@link Model} the component is patterned after
+		 */
+		model: M;
+		/**
+		 *  @property The component's children
+		 */
+		children?: React.ReactNode;
+	}): JSX.Element | Promise<JSX.Element>;
+};
+
+/**Encapsulates a functional React component which is patterned
+ * after a {@link Model}, and has no children. */
+export type ModeledVoidComponent<
+	M extends Model<V>,
+	V extends ModelView = ModelView,
+> = ({
+	model,
+}: Omit<Parameters<ModeledComponent<M, V>>[0], "children">) => ReturnType<
+	ModeledComponent<M, V>
+>;
+
+/**Encapsulates a functional React component which is patterned
+ * after a {@link Model}, and has children. */
+export type ModeledContainerComponent<
+	M extends Model<V>,
+	V extends ModelView = ModelView,
+> = {
+	({
+		model,
+		children,
+	}: Required<Parameters<ModeledComponent<M, V>>[0]>): ReturnType<
+		ModeledComponent<M, V>
+	>;
+};
+
+/**Encapsulates a functional React component which is patterned
+ * after a {@link Model}, and is stylable */
+export type StyledModeledComponent<
+	M extends Model<V>,
+	V extends ModelView = ModelView,
+> = {
+	({
+		model,
+		children,
+		className,
+		style,
+	}: { className?: string; style?: CSSProperties } & Parameters<
+		ModeledComponent<M, V>
+	>[0]): ReturnType<ModeledComponent<M, V>>;
+};
+
+/**Encapsulates a functional React component which is patterned
+ * after a {@link Model}, and is manipulable with a ref. */
+export type ModeledComponentWithRef<
+	M extends Model<V>,
+	V extends ModelView = ModelView,
+	T = unknown,
+> = {
+	({
+		model,
+		children,
+		ref,
+	}: { ref: Ref<T> } & Parameters<ModeledComponent<M, V>>[0]): ReturnType<
+		ModeledComponent<M, V>
+	>;
+};
 
 export type GeneralComponent = () => JSX.Element;
 
