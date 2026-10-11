@@ -75,7 +75,7 @@ const BookRepository = function({ model }) {
 ```
 
 ### ~~`ModeledContainerComponent`~~
-_(**deprecated**: use the new `ModeledComponent` which provides the same features)_
+_(**deprecated**: use the new `ModeledComponent` which provides the same functionality)_
 
 Encapsulates a functional react component which is patterned after a `Model`, and has children.
 
@@ -117,7 +117,7 @@ const SiteSection = function ({ model, children, className }) {
 
 Encapsulates a functional react component which is patterned after a `Model`, and is manipulable with a ref.
 
-#### Example 4:
+#### Example 5:
 
 ```tsx
 const SiteSection = function ({ model, children, ref }) {
@@ -157,7 +157,7 @@ is not yet defined.
 - `PlaceholderedComponent` - Component the placeholdered model will be mapped to when defined.
 - `PlaceholderComponent` - Placeholder component
 
-#### Example 4:
+#### Example 6:
 
 ```tsx
 const BookPlaceholder = function ({ model }) {
@@ -186,7 +186,7 @@ Component that renders different components depending on a provided condition.
 - `FallbackComponent` - Component to render when provided condition does not map to
   any component, or is invalid.
 
-#### Example 5:
+#### Example 7:
 
 ```tsx
 const BookRepository = function({ model }) {
